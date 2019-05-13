@@ -180,9 +180,16 @@ public class HomeScreen extends MaskPhone {
                 p.setVisible(true);
                 dispose();
             }
-            /* if ( e.getSource()==jeux){
-                2048 j= new 2048();
-            }*/
+             if ( e.getSource()==jeux){
+                Jeux2048 j= null;
+                 try {
+                     j = new Jeux2048();
+                 } catch (IOException e1) {
+                     e1.printStackTrace();
+                 }
+                 j.setVisible(true);
+                 dispose();
+            }
         }
 
     }
