@@ -1,3 +1,5 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,10 +9,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
-import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.io.IOException;
 
 
 public  class MaskPhone extends JFrame {

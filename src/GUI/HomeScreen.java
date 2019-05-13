@@ -1,3 +1,5 @@
+package GUI;
+
 import javax.imageio.ImageIO;
 import java.awt.BorderLayout;
 import java.awt.Color;

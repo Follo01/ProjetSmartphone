@@ -1,3 +1,5 @@
+package GUI;
+
 public class Jeux2048 {
     public static void main(String[] args) {
         final int [][]tab = new int[4][4];
