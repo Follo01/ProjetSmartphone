@@ -12,6 +12,6 @@ public class Jeux2048 extends MaskPhone {
             Heure.setHorizontalAlignment(JLabel.CENTER);
             Heure.setFont(taille);
             swisscom.setForeground(Color.white);
-
+            Heure.setForeground(Color.white);
         }
 }
