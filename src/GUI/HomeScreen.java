@@ -105,9 +105,6 @@ public class HomeScreen extends MaskPhone {
         add(center, BorderLayout.CENTER);
         add(apps);
 
-
-
-
         apps.add(contact);
         apps.add(follotunes);
         apps.add(photo);
