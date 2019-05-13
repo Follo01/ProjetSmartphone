@@ -85,7 +85,7 @@ public class HomeScreen extends MaskPhone {
         contact.addActionListener(new Select());
         follotunes.addActionListener(new Select());
         photo.addActionListener(new Select());
-
+        jeux.addActionListener(new Select());
 
 
         apps.setLayout( new FlowLayout() );
