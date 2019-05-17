@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProjetSmartphone.iml" filepath="$PROJECT_DIR$/ProjetSmartphone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mavenprojetsmartphone/projetsmartphone.iml" filepath="$PROJECT_DIR$/../mavenprojetsmartphone/projetsmartphone.iml" />
     </modules>
   </component>
 </project>
