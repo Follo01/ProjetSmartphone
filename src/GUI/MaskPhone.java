@@ -14,6 +14,9 @@ import java.io.File;
 
 
 public  class MaskPhone extends JFrame {
+    //creation pour la betterie.
+    Kernel32.SYSTEM_POWER_STATUS batt = new Kernel32.SYSTEM_POWER_STATUS();
+  // batt.GetSystemPowerStatus();
     JPanel south = new JPanel ();
     JPanel north = new JPanel ();
 
@@ -26,7 +29,7 @@ public  class MaskPhone extends JFrame {
     ImageIcon del = new ImageIcon ("C:/école HES-SO/Java/Cours beuchat/MonGUi/Supp.png");
 
     JLabel swisscom = new JLabel ("Swisscom");
-
+    JLabel battery  = new JLabel(getbatterypourcentPercent());
     //Heure et date
     Date ajd;
     DateFormat dateFormat= new SimpleDateFormat("d MMMM YYYY");
@@ -72,12 +75,13 @@ public  class MaskPhone extends JFrame {
 
         north.setLayout(new BorderLayout());
         north.add(swisscom, BorderLayout.WEST);
+        north.add(battery,BorderLayout.EAST);
         add(north, BorderLayout.NORTH);
 
         north.setBackground(Color.black);
         south.setBackground(Color.black);
         swisscom.setForeground(Color.white);
-
+        battery.setForeground(Color.white);
 
 
     }class Select implements ActionListener {
@@ -131,5 +135,12 @@ public  class MaskPhone extends JFrame {
         ajd = new Date();
         DateFormat format = new SimpleDateFormat("HH:mm");
         return format.format(ajd);
+    }private String getbatterypourcentPercent()
+    {
+        //création de l'instance
+        Kernel32.INSTANCE.GetSystemPowerStatus(batt);
+
+
+        return batt.getBatteryLifePercent() ;
     }
 }

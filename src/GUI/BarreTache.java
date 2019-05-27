@@ -92,8 +92,9 @@ public class BarreTache extends MaskPhone {
         //Ajout de l'heure et Swisscon au north
         north.setLayout(new BorderLayout());
         north.add(swisscom, BorderLayout.WEST);
-        north.add(heure, BorderLayout.CENTER);
-        heure.setHorizontalAlignment(JLabel.CENTER);
+        north.add(battery,BorderLayout.EAST);
+        north.add(Heure, BorderLayout.CENTER);
+        Heure.setHorizontalAlignment(JLabel.CENTER);
         Date.setHorizontalAlignment(JLabel.CENTER);
         add(north, BorderLayout.NORTH);
 
@@ -109,16 +110,16 @@ public class BarreTache extends MaskPhone {
         center.add(background);
         background.setLayout(new BorderLayout());
         swisscom.setForeground(Color.white);
-        heure.setForeground(Color.white);
+        Heure.setForeground(Color.white);
         Date.setForeground(Color.white);
         swisscom.setFont(taille);
-        heure.setFont(Theure);
+        Heure.setFont(THeure);
         Date.setFont(taille);
 
 
         // heure centrale et date
         centerNorth.setLayout(new BorderLayout());
-       centerNorth.add(heure, BorderLayout.CENTER);
+       centerNorth.add(Heure, BorderLayout.CENTER);
         centerNorth.add(Date, BorderLayout.SOUTH);
 // Le panel CENTER est ajouté séparéement dans les autres inferfaces afin de pouvoir ajouter ce que l'on veut au centre.
 
@@ -141,7 +142,7 @@ public class BarreTache extends MaskPhone {
         timer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                heure.setText(BarreTache.this.getTime());
+                Heure.setText(BarreTache.this.getTime());
             }
         }, 1000, 1000);
     }
