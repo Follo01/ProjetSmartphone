@@ -19,6 +19,10 @@ public class Contact extends MaskPhone {
         Heure.setFont(taille);
         swisscom.setForeground(Color.white);
         Heure.setForeground(Color.white);
+
+
+
+
     }
 
 

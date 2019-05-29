@@ -8,5 +8,6 @@ public class Test {
         Son player=new Son("img/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
         InputStream stream = new ByteArrayInputStream(player.getSamples());
         player.play(stream);
+
     }
 }
