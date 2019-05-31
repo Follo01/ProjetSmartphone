@@ -40,13 +40,14 @@ public class Photo extends JFrame {
 	protected JButton retour = new JButton();
 	protected ImageIcon retourIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/return-button.png");
 	
-	retourImage retour1;
-	retourImage retour2;
-	retourImage retour3;
+	protected JButton nouvelle = new JButton(); 
+	protected retourImage essai;
+	
+	protected retourImage retour1, retour2, retour3, retour4, retour5, retour6;
 	private int compteur;
 	
 	public Photo() {
-		super();
+
 		setSize(480,700);
 		setTitle("Galerie");
 		
@@ -107,6 +108,9 @@ public class Photo extends JFrame {
 		firstButton.addActionListener(new Select());
 		secondButton.addActionListener(new Select());
 		thirdButton.addActionListener(new Select());
+		fourthButton.addActionListener(new Select());
+		fifthButton.addActionListener(new Select());
+		sixthButton.addActionListener(new Select());
 		addButton.addActionListener(new Select());
 		delete.addActionListener(new Select());
 		retour.addActionListener(new Select());
@@ -121,6 +125,9 @@ public class Photo extends JFrame {
 		private JButton bouton1 = new JButton("image 1");
 		private JButton bouton2 = new JButton("image 2");
 		private JButton bouton3 = new JButton("image 3");
+		private JButton bouton4 = new JButton("image 4");
+		private JButton bouton5 = new JButton("image 5");
+		private JButton bouton6 = new JButton("image 6");
 		
 		private JLabel phrase = new JLabel("Quelle image voulez-vous supprimer ?");
 		
@@ -134,10 +141,16 @@ public class Photo extends JFrame {
 			buttonPanel.add(bouton1);
 			buttonPanel.add(bouton2);
 			buttonPanel.add(bouton3);
+			buttonPanel.add(bouton4);
+			buttonPanel.add(bouton5);
+			buttonPanel.add(bouton6);
 			
 			bouton1.addActionListener(new DialogEvent());
 			bouton2.addActionListener(new DialogEvent());
 			bouton3.addActionListener(new DialogEvent());
+			bouton4.addActionListener(new DialogEvent());
+			bouton5.addActionListener(new DialogEvent());
+			bouton6.addActionListener(new DialogEvent());
 			
 			globalPanel.add(phrase, BorderLayout.CENTER);
 			globalPanel.add(buttonPanel);
@@ -169,6 +182,24 @@ public class Photo extends JFrame {
 					centre.updateUI();
 					dispose();
 				}
+				
+				if(e.getSource()==bouton4) {
+					centre.remove(fourthButton);
+					centre.updateUI();
+					dispose();
+				}
+				
+				if(e.getSource()==bouton5) {
+					centre.remove(fifthButton);
+					centre.updateUI();
+					dispose();
+				}
+				
+				if(e.getSource()==bouton6) {
+					centre.remove(sixthButton);
+					centre.updateUI();
+					dispose();
+				}
 							
 			}
 		}
@@ -176,41 +207,61 @@ public class Photo extends JFrame {
 	}
 	
 	class Select implements ActionListener{
+		
+		
 		public void actionPerformed(ActionEvent e) {
 			Photo tesst = new Photo();
 			JFileChooser test = new JFileChooser();
+			
+			
+			
 			retour1 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/Greg.jfif");
 			retour2 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/DiogoDraw.png");
 			retour3 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+			retour4 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+			retour5 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+			retour6 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
 			
 			if(e.getSource()==firstButton) {
 				
 				retour1.setVisible(true);
-				retour1.pack();
-				
-				setCompteur(1);
-				System.out.println(compteur);
-				
+				retour1.pack();			
 			}
 			
 			if(e.getSource()==secondButton) {
 				
 				retour2.setVisible(true);				
 				retour2.pack();
-				setVisible(false);
-				compteur=2;
-			
+				
 			}
 			
 			if(e.getSource()==thirdButton) {
 				
 				retour3.setVisible(true);				
 				retour3.pack();
-				setVisible(false);
-				compteur=3;
+
 			}
 			
-			
+			if(e.getSource()==fourthButton) {
+				
+				retour4.setVisible(true);				
+				retour4.pack();
+
+			}
+
+			if(e.getSource()==fifthButton) {
+				
+				retour5.setVisible(true);				
+				retour5.pack();
+
+			}
+
+			if(e.getSource()==sixthButton) {
+				
+				retour6.setVisible(true);				
+				retour6.pack();
+
+			}
 			
 			if(e.getSource()==retour) {	
 				
@@ -228,8 +279,9 @@ public class Photo extends JFrame {
 				if(retourVal== JFileChooser.APPROVE_OPTION) {
 					File file = test.getSelectedFile();
 					path = file.getPath();
-					JButton nouvelle = new JButton();
+					nouvelle = new JButton();
 					ImageIcon nouvelleIcon = new ImageIcon(path);
+					essai = new retourImage(path);
 					
 					nouvelle.setIcon(nouvelleIcon);
 					nouvelle.setContentAreaFilled(false);
@@ -238,16 +290,32 @@ public class Photo extends JFrame {
 					centre.add(nouvelle);
 					centre.updateUI();
 					
-					nouvelle.addActionListener(new Select());	
+					nouvelle.addActionListener(new Ajout());	
 				}
-			}		
+			}
+			
+			
 			
 			
 		}
+		
+		class Ajout extends Select implements ActionListener {	
+			public void actionPerformed(ActionEvent f) {
+				if(f.getSource()== nouvelle) {
+					essai.setVisible(true);
+					essai.pack();
+					System.out.println("coucou");
+				}
+				
+			}
+			
+		}
 	}	
+	
+	
 
 
-class retourImage extends Photo {
+	class retourImage extends Photo {
 	String chemin;
 	ImageIcon icone;
 	JLabel label;	
@@ -288,7 +356,7 @@ class retourImage extends Photo {
 		return this.chemin;
 	}
 	
-	class Selects implements ActionListener{
+	/*class Selects implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			Photo r = new Photo();
 			if(e.getSource()==delete) {
@@ -300,9 +368,10 @@ class retourImage extends Photo {
 				
 			}
 		}
-	}
+	}*/
 	
 	
 }
 
 }
+
