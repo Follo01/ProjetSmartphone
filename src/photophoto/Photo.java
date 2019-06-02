@@ -3,9 +3,14 @@ package photophoto;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Date;
 
 import javax.swing.*;
-
+/**
+ * 
+ * @author Diogo
+ *
+ */
 
 public class Photo extends JFrame {
 	protected JPanel centre = new JPanel();
@@ -34,19 +39,17 @@ public class Photo extends JFrame {
 	protected JButton addButton = new JButton();
 	protected ImageIcon addIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/add.png");
 	
-	protected JButton delete = new JButton();
-	protected ImageIcon deleteIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/delete.png");
-	
 	protected JButton retour = new JButton();
 	protected ImageIcon retourIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/return-button.png");
 	
-	retourImage retour1;
-	retourImage retour2;
-	retourImage retour3;
-	private int compteur;
+	protected JButton nouvelle = new JButton(); 
+	protected retourImage essai;
+	
+	protected retourImage retour1, retour2, retour3, retour4, retour5, retour6;
+
 	
 	public Photo() {
-		super();
+
 		setSize(480,700);
 		setTitle("Galerie");
 		
@@ -83,143 +86,81 @@ public class Photo extends JFrame {
 		sixthButton.setIcon(sixthImage);
 		sixthButton.setContentAreaFilled(false);
 		sixthButton.setBorder(null);
-		
-		delete.setIcon(deleteIcon);
-	    delete.setContentAreaFilled(false);
-	    delete.setBorder(null);
-		
+			
 		addButton.setIcon(addIcon);
 		addButton.setContentAreaFilled(false);
 		addButton.setBorder(null);
 		addButton.setForeground(Color.white);
-		
-		
+			
 		panelPourBoutton.add(addButton);
-		panelPourBoutton.add(delete);
 		panelPourBoutton.setBackground(Color.white);
 		
 		add(centre, BorderLayout.CENTER);
 		add(panelPourBoutton, BorderLayout.SOUTH);
-		centre.setBackground(Color.white);
-		
-		
+		centre.setBackground(Color.white);	
 		
 		firstButton.addActionListener(new Select());
+		
 		secondButton.addActionListener(new Select());
 		thirdButton.addActionListener(new Select());
+		fourthButton.addActionListener(new Select());
+		fifthButton.addActionListener(new Select());
+		sixthButton.addActionListener(new Select());
 		addButton.addActionListener(new Select());
-		delete.addActionListener(new Select());
 		retour.addActionListener(new Select());
-	
-	}
-	
-	private void setCompteur(int compteur) {
-		this.compteur = compteur;
-	}
-	
-	class tempFrame extends JDialog{
-		private JButton bouton1 = new JButton("image 1");
-		private JButton bouton2 = new JButton("image 2");
-		private JButton bouton3 = new JButton("image 3");
 		
-		private JLabel phrase = new JLabel("Quelle image voulez-vous supprimer ?");
-		
-		private JPanel buttonPanel = new JPanel();
-		private JPanel globalPanel = new JPanel();
-		
-		public tempFrame() {
-			
-			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			buttonPanel.setLayout(new FlowLayout());
-			buttonPanel.add(bouton1);
-			buttonPanel.add(bouton2);
-			buttonPanel.add(bouton3);
-			
-			bouton1.addActionListener(new DialogEvent());
-			bouton2.addActionListener(new DialogEvent());
-			bouton3.addActionListener(new DialogEvent());
-			
-			globalPanel.add(phrase, BorderLayout.CENTER);
-			globalPanel.add(buttonPanel);
-					
-			globalPanel.setLayout(new GridLayout(2,1));
-			add(globalPanel);
-			
-			pack();
-			
-		}
-		
-		class DialogEvent implements ActionListener{
-			public void actionPerformed(ActionEvent e) {
-				
-				if(e.getSource()==bouton1) {
-					centre.remove(firstButton);
-					centre.updateUI();
-					dispose();
-				}
-				
-				if(e.getSource()==bouton2) {
-					centre.remove(secondButton);
-					centre.updateUI();
-					dispose();
-				}
-				
-				if(e.getSource()==bouton3) {
-					centre.remove(thirdButton);
-					centre.updateUI();
-					dispose();
-				}
-							
-			}
-		}
-		
+		firstButton.addMouseListener(new MERDE());
+		secondButton.addMouseListener(new MERDE());
+		thirdButton.addMouseListener(new MERDE());
+		fourthButton.addMouseListener(new MERDE());
+		fifthButton.addMouseListener(new MERDE());
+		sixthButton.addMouseListener(new MERDE());	
 	}
 	
 	class Select implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			Photo tesst = new Photo();
+			
 			JFileChooser test = new JFileChooser();
+						
 			retour1 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/Greg.jfif");
 			retour2 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/DiogoDraw.png");
 			retour3 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+			retour4 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+			retour5 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+			retour6 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
 			
 			if(e.getSource()==firstButton) {
-				
 				retour1.setVisible(true);
-				retour1.pack();
-				
-				setCompteur(1);
-				System.out.println(compteur);
-				
+				retour1.pack();			
 			}
 			
-			if(e.getSource()==secondButton) {
-				
+			if(e.getSource()==secondButton) {				
 				retour2.setVisible(true);				
 				retour2.pack();
-				setVisible(false);
-				compteur=2;
-			
 			}
 			
 			if(e.getSource()==thirdButton) {
-				
 				retour3.setVisible(true);				
 				retour3.pack();
-				setVisible(false);
-				compteur=3;
 			}
 			
+			if(e.getSource()==fourthButton) {
+				retour4.setVisible(true);				
+				retour4.pack();
+			}
+
+			if(e.getSource()==fifthButton) {
+				retour5.setVisible(true);				
+				retour5.pack();
+			}
 			
+			if(e.getSource()==sixthButton) {	
+				retour6.setVisible(true);				
+				retour6.pack();
+			}
 			
 			if(e.getSource()==retour) {	
-				
 				dispose();
-			}
-			
-			if(e.getSource()==delete) {
-				tempFrame temp = new tempFrame();
-				temp.setVisible(true);
 			}
 			
 			if(e.getSource()==addButton) {
@@ -228,8 +169,9 @@ public class Photo extends JFrame {
 				if(retourVal== JFileChooser.APPROVE_OPTION) {
 					File file = test.getSelectedFile();
 					path = file.getPath();
-					JButton nouvelle = new JButton();
+					nouvelle = new JButton();
 					ImageIcon nouvelleIcon = new ImageIcon(path);
+					essai = new retourImage(path);
 					
 					nouvelle.setIcon(nouvelleIcon);
 					nouvelle.setContentAreaFilled(false);
@@ -238,16 +180,146 @@ public class Photo extends JFrame {
 					centre.add(nouvelle);
 					centre.updateUI();
 					
-					nouvelle.addActionListener(new Select());	
+					nouvelle.addActionListener(new Ajout());
+					nouvelle.addMouseListener(new MERDE());
 				}
-			}		
-			
+			}			
+		}
+		
+		class Ajout extends Select implements ActionListener {	
+			public void actionPerformed(ActionEvent f) {
+				if(f.getSource()== nouvelle) {
+					essai.setVisible(true);
+					essai.pack();
+					System.out.println("coucou");
+				}
+				
+			}
 			
 		}
-	}	
+	}
+		
+		class MERDE implements MouseListener{		
+			private Date pressedTime;
+			private long timeClicked;
+			private int a;
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				pressedTime = new Date();
+			}
 
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				timeClicked = new Date().getTime() - pressedTime.getTime();
+				tempFrame cheh = new tempFrame();
+				if(timeClicked>=1000) {
+					a = JOptionPane.showConfirmDialog(cheh, "Voulez-vous supprimer cette image ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+					cheh.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					cheh.pack();
+					
+					if(arg0.getSource()==firstButton) {
+						if(a==JOptionPane.YES_OPTION) {
+							retour1.dispose();
+							centre.remove(firstButton);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
+					
+					if(arg0.getSource()==secondButton) {
+						if(a==JOptionPane.YES_OPTION) {
+							retour2.dispose();
+							centre.remove(secondButton);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
 
-class retourImage extends Photo {
+					if(arg0.getSource()==thirdButton) {
+						if(a==JOptionPane.YES_OPTION) {
+							retour3.dispose();
+							centre.remove(thirdButton);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
+					
+					if(arg0.getSource()==fourthButton) {
+						if(a==JOptionPane.YES_OPTION) {
+							retour4.dispose();
+							centre.remove(fourthButton);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
+					
+					if(arg0.getSource()==fifthButton) {
+						if(a==JOptionPane.YES_OPTION) {
+							retour5.dispose();
+							centre.remove(fifthButton);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
+
+					if(arg0.getSource()==sixthButton) {
+						if(a==JOptionPane.YES_OPTION) {
+							retour6.dispose();
+							centre.remove(sixthButton);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
+					
+					if(arg0.getSource()==nouvelle) {
+						if(a==JOptionPane.YES_OPTION) {
+							essai.dispose();
+							centre.remove(nouvelle);
+							centre.updateUI();
+						}
+						if(a==JOptionPane.NO_OPTION) {
+							cheh.dispose();
+						}
+					}
+				}
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}
+		
+	class retourImage extends Photo {
 	String chemin;
 	ImageIcon icone;
 	JLabel label;	
@@ -267,42 +339,20 @@ class retourImage extends Photo {
 		add(milieu, BorderLayout.CENTER);
 	    milieu.setBackground(Color.lightGray);	    
 	    
-	    
-	   // delete.addActionListener(new Selects());
-	    
 	    retour.setIcon(retourIcon);
 	    retour.setContentAreaFilled(false);
 	    retour.setBorder(null);
 	       
-	    ButtonPanel.setLayout(new FlowLayout());
-	   
+	    ButtonPanel.setLayout(new FlowLayout());   
 	    ButtonPanel.add(retour);
 
-	    add(ButtonPanel, BorderLayout.SOUTH);
-	    
-	    
-			
+	    add(ButtonPanel, BorderLayout.SOUTH);		
 	}
 	
 	public String getPath() {
 		return this.chemin;
 	}
-	
-	class Selects implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			Photo r = new Photo();
-			if(e.getSource()==delete) {
-				retour1.dispose();
-				milieu.remove(firstButton);
-				milieu.updateUI();
-				
-				
-				
-			}
-		}
-	}
-	
-	
 }
 
 }
+
