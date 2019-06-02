@@ -84,7 +84,9 @@ public  class MaskPhone extends JFrame {
         battery.setForeground(Color.white);
 
 
-    }class Select implements ActionListener {
+    }
+
+    static class Select implements ActionListener {
 
 
         public void actionPerformed(ActionEvent e) {
