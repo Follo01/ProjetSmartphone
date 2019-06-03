@@ -1,21 +1,21 @@
-package GUI;
+/**
+ * @author Diogo
+ *
+ */
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Date;
 
 import javax.swing.*;
 
-import javax.swing.JLabel;
-
-
 public class Photo extends MaskPhone {
-    protected JPanel centre = new JPanel();
-    protected JPanel bas = new JPanel();
 
+    protected JPanel centre = new JPanel();
+    protected JPanel center;
 
     protected JPanel panelPourBoutton = new JPanel();
 
@@ -40,24 +40,24 @@ public class Photo extends MaskPhone {
     protected JButton addButton = new JButton();
     protected ImageIcon addIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/add.png");
 
-    protected JButton delete = new JButton();
-    protected ImageIcon deleteIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/delete.png");
-
     protected JButton retour = new JButton();
     protected ImageIcon retourIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/return-button.png");
 
-    retourImage retour1;
-    retourImage retour2;
-    retourImage retour3;
-    private int compteur;
+    protected JButton nouvelle = new JButton();
+    protected retourImage nouvelleImage;
 
-    public Photo()throws IOException{
+    protected retourImage retour1, retour2, retour3, retour4, retour5, retour6;
+
+
+    public Photo() throws IOException{
+
         north.add(swisscom,BorderLayout.WEST);
         north.add(Heure, BorderLayout.CENTER);
         Heure.setHorizontalAlignment(JLabel.CENTER);
         Heure.setFont(taille);
         swisscom.setForeground(Color.white);
         Heure.setForeground(Color.white);
+
 
         setTitle("Galerie");
 
@@ -95,102 +95,41 @@ public class Photo extends MaskPhone {
         sixthButton.setContentAreaFilled(false);
         sixthButton.setBorder(null);
 
-        delete.setIcon(deleteIcon);
-        delete.setContentAreaFilled(false);
-        delete.setBorder(null);
-
         addButton.setIcon(addIcon);
         addButton.setContentAreaFilled(false);
         addButton.setBorder(null);
         addButton.setForeground(Color.white);
 
-
         panelPourBoutton.add(addButton);
-        panelPourBoutton.add(delete);
-        panelPourBoutton.add(home);
-        panelPourBoutton.setBackground(Color.BLACK);
-        bas.add(panelPourBoutton, BorderLayout.NORTH);
+        panelPourBoutton.setBackground(Color.white);
 
         add(centre, BorderLayout.CENTER);
-        add(bas,BorderLayout.SOUTH);
-
+        add(panelPourBoutton, BorderLayout.SOUTH);
         centre.setBackground(Color.white);
 
-
-
         firstButton.addActionListener(new Select());
+
         secondButton.addActionListener(new Select());
         thirdButton.addActionListener(new Select());
+        fourthButton.addActionListener(new Select());
+        fifthButton.addActionListener(new Select());
+        sixthButton.addActionListener(new Select());
         addButton.addActionListener(new Select());
-        delete.addActionListener(new Select());
         retour.addActionListener(new Select());
 
+        firstButton.addMouseListener(new Delete());
+        secondButton.addMouseListener(new Delete());
+        thirdButton.addMouseListener(new Delete());
+        fourthButton.addMouseListener(new Delete());
+        fifthButton.addMouseListener(new Delete());
+        sixthButton.addMouseListener(new Delete());
+    }
 
-
-    }class tempFrame extends JDialog{ //suppression
-        private JButton bouton1 = new JButton("image 1");
-        private JButton bouton2 = new JButton("image 2");
-        private JButton bouton3 = new JButton("image 3");
-
-        private JLabel phrase = new JLabel("Quelle image voulez-vous supprimer ?");
-
-        private JPanel buttonPanel = new JPanel();
-        private JPanel globalPanel = new JPanel();
-
-        public tempFrame() {
-
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            buttonPanel.setLayout(new FlowLayout());
-            buttonPanel.add(bouton1);
-            buttonPanel.add(bouton2);
-            buttonPanel.add(bouton3);
-
-            bouton1.addActionListener(new DialogEvent());
-            bouton2.addActionListener(new DialogEvent());
-            bouton3.addActionListener(new DialogEvent());
-
-            globalPanel.add(phrase, BorderLayout.CENTER);
-            globalPanel.add(buttonPanel);
-
-            globalPanel.setLayout(new GridLayout(2,1));
-            add(globalPanel);
-
-            pack();
-
-        }
-
-        class DialogEvent implements ActionListener{
-            public void actionPerformed(ActionEvent e) {
-
-                if(e.getSource()==bouton1) {
-                    centre.remove(firstButton);
-                    centre.updateUI();
-                    dispose();
-                }
-
-                if(e.getSource()==bouton2) {
-                    centre.remove(secondButton);
-                    centre.updateUI();
-                    dispose();
-                }
-
-                if(e.getSource()==bouton3) {
-                    centre.remove(thirdButton);
-                    centre.updateUI();
-                    dispose();
-                }
-
-            }
-        }
-
-    }class Select implements ActionListener{
+    class Select implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            try {//à enlever
-                Photo tesst = new Photo();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            JFileChooser test = new JFileChooser(); //choisir le fichier
+
+            JFileChooser test = new JFileChooser();
+
             try {
                 retour1 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/Greg.jfif");
             } catch (IOException e1) {
@@ -206,44 +145,54 @@ public class Photo extends MaskPhone {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            try {
+                retour4 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour5 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour6 = new retourImage("C:/Users/dalme/workspace/AA_PROJET_PROG/src/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
             if(e.getSource()==firstButton) {
-
                 retour1.setVisible(true);
                 retour1.pack();
-
-
-                System.out.println(compteur);
-
             }
 
             if(e.getSource()==secondButton) {
-
                 retour2.setVisible(true);
                 retour2.pack();
-                setVisible(false);
-                compteur=2;
-
             }
 
             if(e.getSource()==thirdButton) {
-
                 retour3.setVisible(true);
                 retour3.pack();
-                setVisible(false);
-                compteur=3;
             }
 
+            if(e.getSource()==fourthButton) {
+                retour4.setVisible(true);
+                retour4.pack();
+            }
 
+            if(e.getSource()==fifthButton) {
+                retour5.setVisible(true);
+                retour5.pack();
+            }
+
+            if(e.getSource()==sixthButton) {
+                retour6.setVisible(true);
+                retour6.pack();
+            }
 
             if(e.getSource()==retour) {
-
                 dispose();
-            }
-
-            if(e.getSource()==delete) {
-                tempFrame temp = new tempFrame();
-                temp.setVisible(true);
             }
 
             if(e.getSource()==addButton) {
@@ -252,8 +201,13 @@ public class Photo extends MaskPhone {
                 if(retourVal== JFileChooser.APPROVE_OPTION) {
                     File file = test.getSelectedFile();
                     path = file.getPath();
-                    JButton nouvelle = new JButton();
+                    nouvelle = new JButton();
                     ImageIcon nouvelleIcon = new ImageIcon(path);
+                    try {
+                        nouvelleImage = new retourImage(path);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
 
                     nouvelle.setIcon(nouvelleIcon);
                     nouvelle.setContentAreaFilled(false);
@@ -262,12 +216,145 @@ public class Photo extends MaskPhone {
                     centre.add(nouvelle);
                     centre.updateUI();
 
-                    nouvelle.addActionListener(new Select());
+                    nouvelle.addActionListener(new Ajout());
+                    nouvelle.addMouseListener(new Delete());
                 }
             }
+        }
 
+
+        class Ajout extends Select implements ActionListener {
+            public void actionPerformed(ActionEvent f) {
+                if(f.getSource()== nouvelle) {
+                    nouvelleImage.setVisible(true);
+                    nouvelleImage.pack();
+
+                }
+
+            }
 
         }
+    }
+
+    class Delete implements MouseListener{
+        private Date pressedTime;
+        private long timeClicked;
+        private int a;
+
+        @Override
+        public void mousePressed(MouseEvent arg0) {
+            // TODO Auto-generated method stub
+            pressedTime = new Date();
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent arg0) {
+            // TODO Auto-generated method stub
+            timeClicked = new Date().getTime() - pressedTime.getTime();
+            tempFrame confirmationFrame = new tempFrame();
+            if(timeClicked>=1000) {
+                a = JOptionPane.showConfirmDialog(confirmationFrame, "Voulez-vous supprimer cette image ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                confirmationFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                confirmationFrame.pack();
+
+                if(arg0.getSource()==firstButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour1.dispose();
+                        centre.remove(firstButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==secondButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour2.dispose();
+                        centre.remove(secondButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==thirdButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour3.dispose();
+                        centre.remove(thirdButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==fourthButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour4.dispose();
+                        centre.remove(fourthButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==fifthButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour5.dispose();
+                        centre.remove(fifthButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==sixthButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour6.dispose();
+                        centre.remove(sixthButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==nouvelle) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        nouvelleImage.dispose();
+                        centre.remove(nouvelle);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            // TODO Auto-generated method stub
+
+        }
+
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            // TODO Auto-generated method stub
+
+        }
+
     }
 
 
@@ -278,8 +365,14 @@ public class Photo extends MaskPhone {
         JPanel milieu;
         JPanel ButtonPanel = new JPanel();
 
+        /**
+         *
+         * @param chemin
+         * 				le chemin d'accès de l'image.
+         */
         public retourImage(String chemin) throws IOException {
-            super();
+
+
 
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             this.chemin = chemin;
@@ -292,24 +385,24 @@ public class Photo extends MaskPhone {
             add(milieu, BorderLayout.CENTER);
             milieu.setBackground(Color.lightGray);
 
-
-            // delete.addActionListener(new Selects());
-
             retour.setIcon(retourIcon);
             retour.setContentAreaFilled(false);
             retour.setBorder(null);
 
             ButtonPanel.setLayout(new FlowLayout());
-
             ButtonPanel.add(retour);
 
             add(ButtonPanel, BorderLayout.SOUTH);
-
-
         }
 
+        /**
+         *
+         * @return le chemin d'accès de l'image.
+         *
+         */
         public String getPath() {
             return this.chemin;
         }
     }
+
 }
