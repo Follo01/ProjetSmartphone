@@ -43,7 +43,7 @@ public class ListeContact {
 
     //Ajouter un Contact
     public void  addContact (int chiffre){
-        //contacts.add(new InfoContact(Cont.getTextNom(), Cont.getTextPrenom(), Cont.getTextTel(), chiffre));
+        contacts.add(new InfoContact(Cont.getTextNom(), Cont.getTextPrenom(), Cont.getTextTel(), chiffre));
         //Serialisation
         Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
     }

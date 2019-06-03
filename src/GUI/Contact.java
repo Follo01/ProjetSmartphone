@@ -81,13 +81,13 @@ public class Contact extends MaskPhone implements Serializable {
 
         //Création de la JTable
         tableau = new JTable(liste.getArray2D(), new Object[] {"Nom", "Prenom"});
-        tableau.setRowHeight(40);
+        tableau.setRowHeight(20);
 
         //création de la JScroll
         scroll = new JScrollPane(tableau);
 
         //taille du scroll
-        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 400 ) );
+        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 500 ) );
 
         setTitle("Contact");
 
@@ -162,7 +162,7 @@ public class Contact extends MaskPhone implements Serializable {
                 nom.setText("");
                 prenom.setText("");
                 tel.setText("");
-                Contact.this.chiffrePhoto=0;
+
 
                 //empecher les erreurs
                 Contact.this.erreurDouble=false;
@@ -171,7 +171,7 @@ public class Contact extends MaskPhone implements Serializable {
 
             }
 
-            //Quand on appuie sur le bouton ajouter de la page ajouter et que tous les champs sont rempli
+            //Quand on appuie sur le bouton ajouter de la page ajouter et que tous les champs sont remplis
             if(e.getSource()==ajouter2 &&  (!nom.getText().equals("") && !prenom.getText().equals("") && !tel.getText().equals("")) )
             {
                 //ajouter 1 seule fois
@@ -182,7 +182,9 @@ public class Contact extends MaskPhone implements Serializable {
                 }
 
                 //réactualise la panel de la JTable
+
                 refresh();
+                tableau.repaint();
 
                 //ferme la fenêtre
                 fenetreAjout.dispose();
