@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.Date;
 
 import javax.swing.*;
+
 /**
  * 
  * @author Diogo
@@ -191,7 +192,7 @@ public class Photo extends JFrame {
 				if(f.getSource()== nouvelle) {
 					essai.setVisible(true);
 					essai.pack();
-					System.out.println("coucou");
+				
 				}
 				
 			}
@@ -214,11 +215,11 @@ public class Photo extends JFrame {
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				timeClicked = new Date().getTime() - pressedTime.getTime();
-				tempFrame cheh = new tempFrame();
+				tempFrame confirmationFrame = new tempFrame();
 				if(timeClicked>=1000) {
-					a = JOptionPane.showConfirmDialog(cheh, "Voulez-vous supprimer cette image ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-					cheh.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-					cheh.pack();
+					a = JOptionPane.showConfirmDialog(confirmationFrame, "Voulez-vous supprimer cette image ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+					confirmationFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					confirmationFrame.pack();
 					
 					if(arg0.getSource()==firstButton) {
 						if(a==JOptionPane.YES_OPTION) {
@@ -227,7 +228,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 					
@@ -238,7 +239,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 
@@ -249,7 +250,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 					
@@ -260,7 +261,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 					
@@ -271,7 +272,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 
@@ -282,7 +283,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 					
@@ -293,7 +294,7 @@ public class Photo extends JFrame {
 							centre.updateUI();
 						}
 						if(a==JOptionPane.NO_OPTION) {
-							cheh.dispose();
+							confirmationFrame.dispose();
 						}
 					}
 				}
