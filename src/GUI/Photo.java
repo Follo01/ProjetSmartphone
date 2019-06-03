@@ -58,7 +58,6 @@ public class Photo extends MaskPhone {
         swisscom.setForeground(Color.white);
         Heure.setForeground(Color.white);
 
-
         setTitle("Galerie");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
