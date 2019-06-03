@@ -86,7 +86,7 @@ public  class MaskPhone extends JFrame {
 
     }
 
-    static class Select implements ActionListener {
+    class Select implements ActionListener {
 
 
         public void actionPerformed(ActionEvent e) {

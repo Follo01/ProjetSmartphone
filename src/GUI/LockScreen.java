@@ -13,7 +13,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import java.io.File;
 
-public class BarreTache extends MaskPhone {
+public class LockScreen extends MaskPhone {
     /*
      * South : tous les boutons retour, home, delete
      * North : l'heure et le texte "Swisscon"
@@ -48,7 +48,7 @@ public class BarreTache extends MaskPhone {
     Font taille = new Font ("Arial", Font.BOLD, 16 );
 
 
-    public BarreTache() throws IOException {
+    public LockScreen() throws IOException {
 
         //Taille de l'écran smartphone
         setSize(480,700);
@@ -142,7 +142,7 @@ public class BarreTache extends MaskPhone {
         timer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                Heure.setText(BarreTache.this.getTime());
+                Heure.setText(LockScreen.this.getTime());
             }
         }, 1000, 1000);
     }

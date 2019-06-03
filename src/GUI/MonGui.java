@@ -5,9 +5,8 @@ import java.io.IOException;
 
 public class MonGui extends JFrame {
     public static void main(String[] args) throws IOException {
-       BarreTache barreTache= new BarreTache();
-       barreTache.setUndecorated(true);
-       barreTache.setVisible(true);
+       LockScreen lockScreen = new LockScreen();
+       lockScreen.setVisible(true);
 
 
 

@@ -3,22 +3,18 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EventObject;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.table.TableModel;
 
 import Contact.InfoContact;
 import Contact.ListeContact;
-import GUI.Photo;
 
-import Serialization.Serialization;
+/**
+ * @author Gregory
+ *
+ */
 
 public class Contact extends MaskPhone implements Serializable {
     private ListeContact liste;
@@ -53,10 +49,10 @@ public class Contact extends MaskPhone implements Serializable {
     private JButton afficherContact= new JButton("Info");
     private JButton ajouterPhoto= new JButton("Ajouter une photo");
 
-    JButton he = new JButton();
-    JButton sr = new JButton();
-    JButton si = new JButton();
-    JButton vs = new JButton();
+    JButton image1 = new JButton();
+    JButton image2 = new JButton();
+    JButton image3 = new JButton();
+    JButton image4 = new JButton();
 
     Font taille = new Font ("Arial", Font.PLAIN, 15 );
 
@@ -91,7 +87,7 @@ public class Contact extends MaskPhone implements Serializable {
         scroll = new JScrollPane(tableau);
 
         //taille du scroll
-        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 600 ) );
+        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 400 ) );
 
         setTitle("Contact");
 
@@ -289,21 +285,21 @@ public class Contact extends MaskPhone implements Serializable {
             }
 
             //Quand tu appuie sur le bouton d'une photo
-            if(e.getSource() == he  && siContact==true){
+            if(e.getSource() == image1 && siContact==true){
                 //permet de savoir quel photo a été séléctionné
                 Contact.this.chiffrePhoto=1;
                 fenetrePhoto.dispose();
             }
-            if(e.getSource() == sr  && siContact==true){
+            if(e.getSource() == image2 && siContact==true){
                 Contact.this.chiffrePhoto=2;
                 fenetrePhoto.dispose();
 
             }
-            if(e.getSource() == si  && siContact==true){
+            if(e.getSource() == image3  && siContact==true){
                 Contact.this.chiffrePhoto=3;
                 fenetrePhoto.dispose();
             }
-            if(e.getSource() == vs  && siContact==true){
+            if(e.getSource() == image4 && siContact==true){
                 Contact.this.chiffrePhoto=4;
                 fenetrePhoto.dispose();
             }
@@ -472,19 +468,19 @@ public class Contact extends MaskPhone implements Serializable {
                 case 0:
                     break;
                 case 1:
-                    JLabel imageHes = new JLabel(ph.hes);
+                    JLabel imageHes = new JLabel(ph.firstImage);
                     center.add(imageHes);
                     break;
                 case 2:
-                    JLabel imageSierre = new JLabel(ph.sierre);
+                    JLabel imageSierre = new JLabel(ph.secondImage);
                     center.add(imageSierre);
                     break;
                 case 3:
-                    JLabel imageSion = new JLabel(ph.sion);
+                    JLabel imageSion = new JLabel(ph.thirdImage);
                     center.add(imageSion);
                     break;
                 case 4:
-                    JLabel imageVS = new JLabel(ph.valais);
+                    JLabel imageVS = new JLabel(ph.fourthImage);
                     center.add(imageVS);
                     break;
 
@@ -543,22 +539,22 @@ public class Contact extends MaskPhone implements Serializable {
 
 
             center.setLayout(new GridLayout(3,2));
-            center.add(he);
-            center.add(sr);
-            center.add(si);
-            center.add(vs);
+            center.add(image1);
+            center.add(image2);
+            center.add(image3);
+            center.add(image4);
 
-            he.setMargin(new Insets( 0, 0, 0, 0));
-            he.setIcon(ph.hes);
+            image1.setMargin(new Insets( 0, 0, 0, 0));
+            image1.setIcon(ph.firstImage);
 
-            sr.setMargin(new Insets( 0, 0, 0, 0));
-            sr.setIcon(ph.sierre);
+            image2.setMargin(new Insets( 0, 0, 0, 0));
+            image2.setIcon(ph.secondImage);
 
-            si.setMargin(new Insets( 0, 0, 0, 0));
-            si.setIcon(ph.sion);
+            image3.setMargin(new Insets( 0, 0, 0, 0));
+            image3.setIcon(ph.thirdImage);
 
-            vs.setMargin(new Insets( 0, 0, 0, 0));
-            vs.setIcon(ph.valais);
+            image4.setMargin(new Insets( 0, 0, 0, 0));
+            image4.setIcon(ph.fourthImage);
 
 
 
@@ -569,10 +565,10 @@ public class Contact extends MaskPhone implements Serializable {
             //Mise en page
             center.setBackground(Color.lightGray);
 
-            he.addActionListener(new SelectButton(  ));
-            sr.addActionListener(new SelectButton(  ));
-            vs.addActionListener(new SelectButton(  ));
-            si.addActionListener(new SelectButton(  ));
+            image1.addActionListener(new SelectButton(  ));
+            image2.addActionListener(new SelectButton(  ));
+            image4.addActionListener(new SelectButton(  ));
+            image3.addActionListener(new SelectButton(  ));
 
             siContact=true;
 

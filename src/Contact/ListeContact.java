@@ -37,7 +37,7 @@ public class ListeContact {
         this.Cont = Cont;
 
         //Déséralisation
-        contacts = (List<InfoContact>) Serialization.deseralisation("C:/contact/contact.txt");
+        contacts = (List<InfoContact>) Serialization.deseralisation("C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
 
     }
 
@@ -45,21 +45,21 @@ public class ListeContact {
     public void  addContact (int chiffre){
         //contacts.add(new InfoContact(Cont.getTextNom(), Cont.getTextPrenom(), Cont.getTextTel(), chiffre));
         //Serialisation
-        Serialization.serialisation(contacts, "C:/contact/contact.txt");
+        Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
     }
 
     //Suprimer un Contact
     public void deleteContact (int chiffre){
         contacts.remove(chiffre);
         //Serialisation
-        Serialization.serialisation(contacts, "C:/contact/contact.txt");
+        Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
     }
 
     //Editer un Contact
     public void editContact (int chiffre, InfoContact ic){
         contacts.set(chiffre, ic);
         //Serialisation
-        Serialization.serialisation(contacts, "C:/contact/contact.txt");
+        Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
     }
 
     //Inserer l'Arraylist dans un tableau pour pouvoir y accéder avec la JTable
@@ -80,10 +80,10 @@ public class ListeContact {
     //Création d'un fichier .txt pour faire la sérialisation (si fichier inexistant)
     private void creationFichier()
     {
-        File fichier = new File("C:/contact/contact.txt") ;
+        File fichier = new File("C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt") ;
         if (fichier.exists()==false)
         {
-            Serialization.serialisation(new ArrayList<InfoContact>(), "C:/contact/contact.txt");
+            Serialization.serialisation(new ArrayList<InfoContact>(), "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
         }
     }
 }

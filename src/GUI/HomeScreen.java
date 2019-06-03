@@ -36,10 +36,6 @@ public class HomeScreen extends MaskPhone {
 
     private JPanel center = new JPanel();
 
-    //taille texte
-
-
-
     //private JPanelWithBackground center= new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/Fond d'écran.jpeg");
     //private ... "C:/école HES-SO/ProjetSmartphone/img/Fond d'écran.jpeg"
     public HomeScreen() throws IOException {
@@ -87,7 +83,6 @@ public class HomeScreen extends MaskPhone {
         photo.addActionListener(new Select());
         jeux.addActionListener(new Select());
 
-
         apps.setLayout( new FlowLayout() );
 
         //remetre les heures sur la barre de Tache.
@@ -97,10 +92,6 @@ public class HomeScreen extends MaskPhone {
         Heure.setFont(taille);
         swisscom.setForeground(Color.white);
         Heure.setForeground(Color.white);
-        //Mettre l'heure centré
-         //heure.setHorizontalAlignment(SwingConstants.CENTER);
-
-        //center.add(heure, BorderLayout.NORTH);
 
         add(center, BorderLayout.CENTER);
         add(apps);
@@ -113,10 +104,6 @@ public class HomeScreen extends MaskPhone {
         //Mise en page
         apps.setBackground(Color.white);
        // heure.setFont(Theure);
-
-
-
-
 
     }class JPanelWithBackground extends JPanel {
         private Image backgroundImage;
