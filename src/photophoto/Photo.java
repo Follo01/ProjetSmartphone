@@ -1,3 +1,8 @@
+/**
+ * @author Diogo
+ * 
+ */
+
 package photophoto;
 
 import java.awt.*;
@@ -7,15 +12,9 @@ import java.util.Date;
 
 import javax.swing.*;
 
-/**
- * 
- * @author Diogo
- *
- */
-
 public class Photo extends JFrame {
 	protected JPanel centre = new JPanel();
-	JPanel center;
+	protected JPanel center;
 	
 	protected JPanel panelPourBoutton = new JPanel();
 	
@@ -44,7 +43,7 @@ public class Photo extends JFrame {
 	protected ImageIcon retourIcon = new ImageIcon("C:/Users/dalme/workspace/AA_PROJET_PROG/src/return-button.png");
 	
 	protected JButton nouvelle = new JButton(); 
-	protected retourImage essai;
+	protected retourImage nouvelleImage;
 	
 	protected retourImage retour1, retour2, retour3, retour4, retour5, retour6;
 
@@ -110,12 +109,12 @@ public class Photo extends JFrame {
 		addButton.addActionListener(new Select());
 		retour.addActionListener(new Select());
 		
-		firstButton.addMouseListener(new MERDE());
-		secondButton.addMouseListener(new MERDE());
-		thirdButton.addMouseListener(new MERDE());
-		fourthButton.addMouseListener(new MERDE());
-		fifthButton.addMouseListener(new MERDE());
-		sixthButton.addMouseListener(new MERDE());	
+		firstButton.addMouseListener(new Delete());
+		secondButton.addMouseListener(new Delete());
+		thirdButton.addMouseListener(new Delete());
+		fourthButton.addMouseListener(new Delete());
+		fifthButton.addMouseListener(new Delete());
+		sixthButton.addMouseListener(new Delete());	
 	}
 	
 	class Select implements ActionListener{
@@ -172,7 +171,7 @@ public class Photo extends JFrame {
 					path = file.getPath();
 					nouvelle = new JButton();
 					ImageIcon nouvelleIcon = new ImageIcon(path);
-					essai = new retourImage(path);
+					nouvelleImage = new retourImage(path);
 					
 					nouvelle.setIcon(nouvelleIcon);
 					nouvelle.setContentAreaFilled(false);
@@ -182,16 +181,17 @@ public class Photo extends JFrame {
 					centre.updateUI();
 					
 					nouvelle.addActionListener(new Ajout());
-					nouvelle.addMouseListener(new MERDE());
+					nouvelle.addMouseListener(new Delete());
 				}
 			}			
 		}
 		
+
 		class Ajout extends Select implements ActionListener {	
 			public void actionPerformed(ActionEvent f) {
 				if(f.getSource()== nouvelle) {
-					essai.setVisible(true);
-					essai.pack();
+					nouvelleImage.setVisible(true);
+					nouvelleImage.pack();
 				
 				}
 				
@@ -200,7 +200,7 @@ public class Photo extends JFrame {
 		}
 	}
 		
-		class MERDE implements MouseListener{		
+		class Delete implements MouseListener{		
 			private Date pressedTime;
 			private long timeClicked;
 			private int a;
@@ -289,7 +289,7 @@ public class Photo extends JFrame {
 					
 					if(arg0.getSource()==nouvelle) {
 						if(a==JOptionPane.YES_OPTION) {
-							essai.dispose();
+							nouvelleImage.dispose();
 							centre.remove(nouvelle);
 							centre.updateUI();
 						}
@@ -312,6 +312,7 @@ public class Photo extends JFrame {
 				
 			}
 
+		
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -320,6 +321,7 @@ public class Photo extends JFrame {
 			
 		}
 		
+
 	class retourImage extends Photo {
 	String chemin;
 	ImageIcon icone;
@@ -327,6 +329,11 @@ public class Photo extends JFrame {
 	JPanel milieu;
 	JPanel ButtonPanel = new JPanel();
 	
+	/**
+	 * 
+	 * @param chemin
+	 * 				le chemin d'accès de l'image.
+	 */
 	public retourImage(String chemin){
 	
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -350,6 +357,11 @@ public class Photo extends JFrame {
 	    add(ButtonPanel, BorderLayout.SOUTH);		
 	}
 	
+	/**
+	 * 
+	 * @return le chemin d'accès de l'image.
+	 * 
+	 */
 	public String getPath() {
 		return this.chemin;
 	}
