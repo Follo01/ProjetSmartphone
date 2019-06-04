@@ -24,9 +24,9 @@ public  class MaskPhone extends JFrame {
     JButton delete = new JButton();
     JButton retour= new JButton();
 
-    ImageIcon ret = new ImageIcon ("C:/école HES-SO/Java/Cours beuchat/MonGUi/Retour.png");
-    ImageIcon hom = new ImageIcon ("C:/école HES-SO/Java/Cours beuchat/MonGUi/Maison.png");
-    ImageIcon del = new ImageIcon ("C:/école HES-SO/Java/Cours beuchat/MonGUi/Supp.png");
+    ImageIcon ret = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/back.png");
+    ImageIcon hom = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/home.png");
+    ImageIcon del = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/power.png");
 
     JLabel swisscom = new JLabel ("Swisscom");
     JLabel battery  = new JLabel(getbatterypourcentPercent());

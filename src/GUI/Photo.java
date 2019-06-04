@@ -37,6 +37,12 @@ public class Photo extends MaskPhone {
     protected JButton sixthButton = new JButton();
     protected ImageIcon sixthImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
+    protected JButton seventhButton = new JButton();
+    protected ImageIcon seventhImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+
+    protected JButton eighthButton = new JButton();
+    protected ImageIcon eighthImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+
     protected JButton addButton = new JButton();
     protected ImageIcon addIcon = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/add.png");
 
@@ -46,7 +52,7 @@ public class Photo extends MaskPhone {
     protected JButton nouvelle = new JButton();
     protected retourImage nouvelleImage;
 
-    protected retourImage retour1, retour2, retour3, retour4, retour5, retour6;
+    protected retourImage retour1, retour2, retour3, retour4, retour5, retour6, retour7, retour8;
 
 
     public Photo() throws IOException{
@@ -69,6 +75,8 @@ public class Photo extends MaskPhone {
         centre.add(fourthButton);
         centre.add(fifthButton);
         centre.add(sixthButton);
+        centre.add(seventhButton);
+        centre.add(eighthButton);
 
         firstButton.setIcon(firstImage);
         firstButton.setContentAreaFilled(false);
@@ -94,6 +102,14 @@ public class Photo extends MaskPhone {
         sixthButton.setContentAreaFilled(false);
         sixthButton.setBorder(null);
 
+        seventhButton.setIcon(seventhImage);
+        seventhButton.setContentAreaFilled(false);
+        seventhButton.setBorder(null);
+
+        eighthButton.setIcon(eighthImage);
+        eighthButton.setContentAreaFilled(false);
+        eighthButton.setBorder(null);
+
         addButton.setIcon(addIcon);
         addButton.setContentAreaFilled(false);
         addButton.setBorder(null);
@@ -115,6 +131,8 @@ public class Photo extends MaskPhone {
         fourthButton.addActionListener(new Select());
         fifthButton.addActionListener(new Select());
         sixthButton.addActionListener(new Select());
+        seventhButton.addActionListener(new Select());
+        eighthButton.addActionListener(new Select());
         addButton.addActionListener(new Select());
         retour.addActionListener(new Select());
 
@@ -124,6 +142,8 @@ public class Photo extends MaskPhone {
         fourthButton.addMouseListener(new Delete());
         fifthButton.addMouseListener(new Delete());
         sixthButton.addMouseListener(new Delete());
+        seventhButton.addMouseListener(new Delete());
+        eighthButton.addMouseListener(new Delete());
     }
 
     class Select implements ActionListener{
@@ -161,6 +181,16 @@ public class Photo extends MaskPhone {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            try {
+                retour7 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour8 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
             if(e.getSource()==firstButton) {
                 retour1.setVisible(true);
@@ -190,6 +220,16 @@ public class Photo extends MaskPhone {
             if(e.getSource()==sixthButton) {
                 retour6.setVisible(true);
                 retour6.pack();
+            }
+
+            if(e.getSource()==seventhButton) {
+                retour7.setVisible(true);
+                retour7.pack();
+            }
+
+            if(e.getSource()==eighthButton) {
+                retour8.setVisible(true);
+                retour8.pack();
             }
 
             if(e.getSource()==retour) {
@@ -317,6 +357,28 @@ public class Photo extends MaskPhone {
                     if(a==JOptionPane.YES_OPTION) {
                         retour6.dispose();
                         centre.remove(sixthButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==seventhButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour7.dispose();
+                        centre.remove(seventhButton);
+                        centre.updateUI();
+                    }
+                    if(a==JOptionPane.NO_OPTION) {
+                        confirmationFrame.dispose();
+                    }
+                }
+
+                if(arg0.getSource()==eighthButton) {
+                    if(a==JOptionPane.YES_OPTION) {
+                        retour8.dispose();
+                        centre.remove(eighthButton);
                         centre.updateUI();
                     }
                     if(a==JOptionPane.NO_OPTION) {

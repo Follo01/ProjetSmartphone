@@ -11,11 +11,15 @@ import javax.swing.*;
 import Contact.InfoContact;
 import Contact.ListeContact;
 
+
 /**
  * @author Gregory
+ * @version 1.0
+ * @since 31.05.2019
+ * Cette classe permet de crées un contact qui peut-être utiliser dans un smartphone.
+ *
  *
  */
-
 public class Contact extends MaskPhone implements Serializable {
     private ListeContact liste;
 
@@ -81,14 +85,14 @@ public class Contact extends MaskPhone implements Serializable {
 
         //Création de la JTable
         tableau = new JTable(liste.getArray2D(), new Object[] {"Nom", "Prenom"});
-        tableau.setRowHeight(20);
+        tableau.setRowHeight(40);
 
         //création de la JScroll
         scroll = new JScrollPane(tableau);
 
         //taille du scroll
-        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 500 ) );
-
+        scroll.setPreferredSize( new
+ Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 500 ) );
         setTitle("Contact");
 
         // Ajout du listener au bouton "Ajouter" de la fenêtre d'ajout
@@ -601,7 +605,7 @@ public class Contact extends MaskPhone implements Serializable {
         tableau = new JTable(liste.getArray2D(), new Object[] {"Nom", "Prenom"});
         tableau.setRowHeight(40);
         scroll = new JScrollPane(tableau);
-        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 600 ) );
+        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 500 ) );
         pNorth.add(scroll);
         pNorth.revalidate();
         scroll.setOpaque(false);
