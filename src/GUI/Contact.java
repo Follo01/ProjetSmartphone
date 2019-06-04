@@ -117,24 +117,24 @@ public class Contact extends MaskPhone implements Serializable {
         add(center, BorderLayout.CENTER);
 
         //Mise en page
-        center.setBackground(Color.black);
-        pSouth.setBackground(Color.black);
-        pNorth.setBackground(Color.black);
+        center.setBackground(Color.LIGHT_GRAY);
+        pSouth.setBackground(Color.LIGHT_GRAY);
+        pNorth.setBackground(Color.GRAY);
 
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
 
         tableau.setBackground(Color.DARK_GRAY);
-        tableau.setForeground(Color.white);
+        tableau.setForeground(Color.WHITE);
         tableau.setFont(taille);
 
         afficherContact.setBackground(Color.darkGray);
         afficherContact.setForeground(Color.WHITE);
         ajouter.setBackground(Color.darkGray);
         ajouter.setForeground(Color.WHITE);
-        supprimer.setBackground(Color.darkGray);
+        supprimer.setBackground(Color.DARK_GRAY);
         supprimer.setForeground(Color.WHITE);
-        modifier.setBackground(Color.darkGray);
+        modifier.setBackground(Color.DARK_GRAY);
         modifier.setForeground(Color.WHITE);
 
         // mise en place de la barre des tâche pour chaque
@@ -159,7 +159,11 @@ public class Contact extends MaskPhone implements Serializable {
             if(e.getSource()==ajouter)
             {
                 //création de la fenêtre ajouter
-                fenetreAjout = new FrameAdd() ;
+                try {
+                    fenetreAjout = new FrameAdd() ;
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 fenetreAjout.setVisible(true) ;
 
                 //remise à zero des champs
@@ -311,7 +315,7 @@ public class Contact extends MaskPhone implements Serializable {
             }
         }
     }//Création de la fenêtre d'ajout
-    class FrameAdd extends BaseDialog
+    class FrameAdd extends MaskPhone
     {
 
 
@@ -319,7 +323,7 @@ public class Contact extends MaskPhone implements Serializable {
 
 
 
-        public FrameAdd(){
+        public FrameAdd() throws IOException{
             super();
 
             setTitle("Ajouter");
@@ -474,20 +478,20 @@ public class Contact extends MaskPhone implements Serializable {
                 case 0:
                     break;
                 case 1:
-                    JLabel imageHes = new JLabel(ph.firstImage);
-                    center.add(imageHes);
+                    JLabel image1 = new JLabel(ph.firstImage);
+                    center.add(image1);
                     break;
                 case 2:
-                    JLabel imageSierre = new JLabel(ph.secondImage);
-                    center.add(imageSierre);
+                    JLabel image2 = new JLabel(ph.secondImage);
+                    center.add(image2);
                     break;
                 case 3:
-                    JLabel imageSion = new JLabel(ph.thirdImage);
-                    center.add(imageSion);
+                    JLabel image3 = new JLabel(ph.thirdImage);
+                    center.add(image3);
                     break;
                 case 4:
-                    JLabel imageVS = new JLabel(ph.fourthImage);
-                    center.add(imageVS);
+                    JLabel image4 = new JLabel(ph.fourthImage);
+                    center.add(image4);
                     break;
 
             }
