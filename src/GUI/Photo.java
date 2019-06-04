@@ -15,7 +15,7 @@ import javax.swing.*;
 public class Photo extends MaskPhone {
 
     protected JPanel centre = new JPanel();
-    protected JPanel center;
+
 
     protected JPanel panelPourBoutton = new JPanel();
 
@@ -122,7 +122,7 @@ public class Photo extends MaskPhone {
 
         add(centre, BorderLayout.CENTER);
         add(panelPourBoutton, BorderLayout.SOUTH);
-        centre.setBackground(Color.white);
+        centre.setBackground(Color.LIGHT_GRAY);
 
         firstButton.addActionListener(new Select());
 

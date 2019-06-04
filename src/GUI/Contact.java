@@ -615,7 +615,7 @@ public class Contact extends MaskPhone implements Serializable {
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
         tableau.setBackground(Color.DARK_GRAY);
-        tableau.setForeground(Color.white);
+        tableau.setForeground(Color.WHITE);
         tableau.setFont(taille);
     }
 
