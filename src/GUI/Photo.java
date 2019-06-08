@@ -2,7 +2,7 @@
  * @author Diogo
  *
  */
-
+package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
