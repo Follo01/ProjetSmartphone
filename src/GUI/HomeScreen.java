@@ -23,7 +23,6 @@ public class HomeScreen extends MaskPhone {
 
     private JButton contact= new JButton();
     private JButton follotunes= new JButton();
-    private JButton jeux=new JButton();
     private JButton photo= new JButton();
     private JPanelWithBackground apps = new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/background2.jpg") ;
     private ImageIcon contct = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/contact.png");
@@ -70,18 +69,12 @@ public class HomeScreen extends MaskPhone {
         photo.setBorder(null);                        //N'a pas de bordure
         photo.setContentAreaFilled(false);            //Enleve le cadre autour
 
-        jeux.setMargin(new Insets( 0, 0, 0, 0));     //enlever les marges
-        jeux.setIcon(app);                        //Ajout des images reprensentant le bouton
-        jeux.setBackground(new Color(0,0,0,0));      // taille bouton
-        jeux.setOpaque(false);                       // bouton est opaque
-        jeux.setBorder(null);                        //N'a pas de bordure
-        jeux.setContentAreaFilled(false);            //Enleve le cadre autour
+
 
         //Animation des boutons
         contact.addActionListener(new Select());
         follotunes.addActionListener(new Select());
         photo.addActionListener(new Select());
-        jeux.addActionListener(new Select());
 
         apps.setLayout( new FlowLayout() );
 
@@ -99,11 +92,11 @@ public class HomeScreen extends MaskPhone {
         apps.add(contact);
         apps.add(follotunes);
         apps.add(photo);
-        apps.add(jeux);
+
 
         //Mise en page
         apps.setBackground(Color.white);
-       // heure.setFont(Theure);
+
 
     }class JPanelWithBackground extends JPanel {
         private Image backgroundImage;
@@ -164,16 +157,7 @@ public class HomeScreen extends MaskPhone {
                 p.setVisible(true);
                 dispose();
             }
-             if ( e.getSource()==jeux){
-                Jeux2048 j= null;
-                 try {
-                     j = new Jeux2048();
-                 } catch (IOException e1) {
-                     e1.printStackTrace();
-                 }
-                 j.setVisible(true);
-                 dispose();
-            }
+
         }
 
     }
