@@ -1,4 +1,6 @@
 
+package GUI;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -146,7 +148,7 @@ public class LockScreen extends MaskPhone {
         Heure.setForeground(Color.white);
         Date.setForeground(Color.white);
         swisscom.setFont(taille);
-        Heure.setFont(THeure);
+        Heure.setFont(Theure);
         Date.setFont(taille);
 
 

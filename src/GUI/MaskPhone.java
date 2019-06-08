@@ -29,13 +29,13 @@ public  class MaskPhone extends JFrame {
     ImageIcon del = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/power.png");
 
     JLabel swisscom = new JLabel ("Swisscom");
-    JLabel battery  = new JLabel(getbatterypourcentPercent());
+    public JLabel battery  = new JLabel(getbatterypourcentPercent());
     //Heure et date
     Date ajd;
     DateFormat dateFormat= new SimpleDateFormat("d MMMM YYYY");
     Date dateform=new Date();
 
-    JLabel Heure = new JLabel(getTime());
+    public JLabel Heure = new JLabel(getTime());
     java.util.Timer timer = new Timer();
     Font THeure = new Font ("Arial", Font.PLAIN, 100 );
     Font taille = new Font ("Arial", Font.BOLD, 16 );
