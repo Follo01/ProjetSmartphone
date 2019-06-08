@@ -3,7 +3,6 @@
  *
  */
 
-package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -13,50 +12,70 @@ import java.util.Date;
 import javax.swing.*;
 
 public class Photo extends MaskPhone {
-
+	
+	/**
+	 * Panel de la galerie et du bouton
+	 */
     protected JPanel centre = new JPanel();
-
-
     protected JPanel panelPourBoutton = new JPanel();
 
+    /**
+     * Création des boutons pour les images
+     */
     protected JButton firstButton = new JButton();
-    protected ImageIcon firstImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/Greg.jfif");
+    protected ImageIcon firstImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/Greg.jfif");
 
     protected JButton secondButton = new JButton();
-    protected ImageIcon secondImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/DiogoDraw.png");
+    protected ImageIcon secondImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/DiogoDraw.png");
 
     protected JButton thirdButton = new JButton();
-    protected ImageIcon thirdImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
+    protected ImageIcon thirdImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
     protected JButton fourthButton = new JButton();
-    protected ImageIcon fourthImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
+    protected ImageIcon fourthImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
     protected JButton fifthButton = new JButton();
-    protected ImageIcon fifthImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
+    protected ImageIcon fifthImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
     protected JButton sixthButton = new JButton();
-    protected ImageIcon sixthImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
+    protected ImageIcon sixthImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
     protected JButton seventhButton = new JButton();
-    protected ImageIcon seventhImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
+    protected ImageIcon seventhImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
     protected JButton eighthButton = new JButton();
-    protected ImageIcon eighthImage = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
+    protected ImageIcon eighthImage = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
 
+    /**
+     * Boutons d'ajout et de retour
+     */
     protected JButton addButton = new JButton();
-    protected ImageIcon addIcon = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/add.png");
+    protected ImageIcon addIcon = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/add.png");
 
     protected JButton retour = new JButton();
-    protected ImageIcon retourIcon = new ImageIcon("C:/Ã©cole HES-SO/ProjetSmartphone/img/return-button.png");
+    protected ImageIcon retourIcon = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/return-button.png");
 
+    /**
+     * Bouton pour le(s) image(s) ajoutée(s)
+     */
     protected JButton nouvelle = new JButton();
     protected retourImage nouvelleImage;
 
+    /**
+     * Attributs pour l'affichage des images
+     */
     protected retourImage retour1, retour2, retour3, retour4, retour5, retour6, retour7, retour8;
 
-
+    /**
+     * 
+     * @throws IOException
+     */
     public Photo() throws IOException{
 
+    	/**
+    	 * Barre du haut avec les différentes informations 
+    	 * du téléphone.
+    	 */
         north.add(swisscom,BorderLayout.WEST);
         north.add(Heure, BorderLayout.CENTER);
         Heure.setHorizontalAlignment(JLabel.CENTER);
@@ -68,6 +87,9 @@ public class Photo extends MaskPhone {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        /**
+         * Ajout des boutons d'images dans le panel principal
+         */
         centre.setLayout(new GridLayout(5,2,15,15));
         centre.add(firstButton);
         centre.add(secondButton);
@@ -77,7 +99,11 @@ public class Photo extends MaskPhone {
         centre.add(sixthButton);
         centre.add(seventhButton);
         centre.add(eighthButton);
-
+        
+        
+        /**
+         * Réglages graphiques des boutons d'images
+         */
         firstButton.setIcon(firstImage);
         firstButton.setContentAreaFilled(false);
         firstButton.setBorder(null);
@@ -115,6 +141,7 @@ public class Photo extends MaskPhone {
         addButton.setBorder(null);
         addButton.setForeground(Color.white);
 
+     
         panelPourBoutton.add(addButton);
         panelPourBoutton.add(home);
         panelPourBoutton.add(delete);
@@ -124,8 +151,10 @@ public class Photo extends MaskPhone {
         add(panelPourBoutton, BorderLayout.SOUTH);
         centre.setBackground(Color.LIGHT_GRAY);
 
+        /**
+         * Liaison des listeners avec les boutons
+         */
         firstButton.addActionListener(new Select());
-
         secondButton.addActionListener(new Select());
         thirdButton.addActionListener(new Select());
         fourthButton.addActionListener(new Select());
@@ -148,50 +177,56 @@ public class Photo extends MaskPhone {
 
     class Select implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-
             JFileChooser selectDossier = new JFileChooser();
+            
+            /**
+             * Try & catch pour l'initialisation 
+             * des images
+             */
+            try {
+                retour1 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/Greg.jfif");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour2 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/DiogoDraw.png");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour3 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour4 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour5 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour6 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour7 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                retour8 = new retourImage("C:/école HES-SO/ProjetSmartphone/img/ookami.jpg");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
-            try {
-                retour1 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/Greg.jfif");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour2 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/DiogoDraw.png");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour3 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour4 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour5 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour6 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour7 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour8 = new retourImage("C:/Ã©cole HES-SO/ProjetSmartphone/img/ookami.jpg");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
+            /**
+             * Affiche l'image dans une nouvelle fenêtre
+             */
             if(e.getSource()==firstButton) {
                 retour1.setVisible(true);
                 retour1.pack();
@@ -232,14 +267,27 @@ public class Photo extends MaskPhone {
                 retour8.pack();
             }
 
+            /**
+             * ferme la fenêtre 
+             */
             if(e.getSource()==retour) {
                 dispose();
             }
 
+            /**
+             * Ajout d'image
+             */
             if(e.getSource()==addButton) {
                 String path="";
                 int retourVal = selectDossier.showOpenDialog(Photo.this);
-                if(retourVal== JFileChooser.APPROVE_OPTION) {
+                
+                /**
+                 * Lorsque l'utilisateur a choisi son image
+                 * un nouveau bouton est crée avec son icone
+                 * et ses listeners.
+                 * 
+                 */
+                if(retourVal == JFileChooser.APPROVE_OPTION) {
                     File file = selectDossier.getSelectedFile();
                     path = file.getPath();
                     nouvelle = new JButton();
@@ -263,31 +311,41 @@ public class Photo extends MaskPhone {
             }
         }
 
-
+        /**
+         * Listener pour le(s) bouton(s) d'image(s) ajouté(s)
+         *
+         */
         class Ajout extends Select implements ActionListener {
             public void actionPerformed(ActionEvent f) {
                 if(f.getSource()== nouvelle) {
                     nouvelleImage.setVisible(true);
                     nouvelleImage.pack();
-
                 }
-
             }
-
         }
     }
 
+    
     class Delete implements MouseListener{
         private Date pressedTime;
         private long timeClicked;
         private int a;
 
+        /**
+         * stock la durée de la pression de la souris
+         */
         @Override
         public void mousePressed(MouseEvent arg0) {
             // TODO Auto-generated method stub
             pressedTime = new Date();
         }
 
+        /**
+         * Si l'utilisateur presse suffisamment longtemps
+         * la souris, une boîte de dialogue s'ouvre
+         * proposant à l'utilisateur de supprimer
+         * l'image sur laquelle il se trouve.
+         */
         @Override
         public void mouseReleased(MouseEvent arg0) {
             // TODO Auto-generated method stub
@@ -421,6 +479,11 @@ public class Photo extends MaskPhone {
     }
 
 
+    /**
+     * 
+     * Classe pour la fenêtre d'affichage des images
+     *
+     */
     class retourImage extends Photo {
         String chemin;
         ImageIcon icone;
@@ -431,13 +494,17 @@ public class Photo extends MaskPhone {
         /**
          *
          * @param chemin
-         * 				le chemin d'accÃ¨s de l'image.
+         * le chemin d'accès de l'image.
          */
         public retourImage(String chemin) throws IOException {
-
-
-
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        	
+        	/**
+        	 * L'image est affiché dans un label
+        	 * puis dans le panel milieu (propre à
+        	 * sa classe).
+        	 * 
+        	 */
             this.chemin = chemin;
             icone = new ImageIcon(chemin);
             label = new JLabel(icone);
@@ -455,13 +522,12 @@ public class Photo extends MaskPhone {
             ButtonPanel.setLayout(new FlowLayout());
             ButtonPanel.add(retour);
 
-
             add(ButtonPanel, BorderLayout.SOUTH);
         }
 
         /**
          *
-         * @return le chemin d'accÃ¨s de l'image.
+         * @return le chemin d'accès de l'image.
          *
          */
         public String getPath() {
