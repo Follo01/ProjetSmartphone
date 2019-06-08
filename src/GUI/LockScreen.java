@@ -1,4 +1,4 @@
-package GUI;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,27 +13,38 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import java.io.File;
 
+/**
+ * 
+ * @author gregory
+ *
+ */
+
+
 public class LockScreen extends MaskPhone {
-    /*
+    /**
      * South : tous les boutons retour, home, delete
      * North : l'heure et le texte "Swisscon"
-     */
+     */	
     JPanel south = new JPanel ();
     JPanel north = new JPanel ();
-    JPanelWithBackground center= new JPanelWithBackground("C:/Ã©cole HES-SO/ProjetSmartphone/img/background.jpg");
-    JPanelWithBackground background=new JPanelWithBackground("C:/Ã©cole HES-SO/ProjetSmartphone/img/background.jpg");
+    JPanelWithBackground center= new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/background.jpg");
+    JPanelWithBackground background=new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/background.jpg");
     JPanel centerNorth= new JPanel();
-    //Button bar + image
+    
+    /**
+     * Barre des boutons avec leurs icones
+     */
     JButton retour = new JButton();
     JButton home = new JButton();
     JButton delete = new JButton();
 
+    ImageIcon ret = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/back.png");
+    ImageIcon hom = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/home.png");
+    ImageIcon del = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/power.png");
 
-    ImageIcon ret = new ImageIcon ("C:/Ã©cole HES-SO/ProjetSmartphone/img/back.png");
-    ImageIcon hom = new ImageIcon ("C:/Ã©cole HES-SO/ProjetSmartphone/img/home.png");
-    ImageIcon del = new ImageIcon ("C:/Ã©cole HES-SO/ProjetSmartphone/img/power.png");
-
-    //Heure et date
+    /**
+     * Heure et date
+     */
     Date ajd;
     DateFormat dateFormat= new SimpleDateFormat("d MMMM YYYY");
     Date dateform=new Date();
@@ -44,26 +55,43 @@ public class LockScreen extends MaskPhone {
 
     JLabel swisscom = new JLabel ("Swisscom");
     JLabel Date=new JLabel(dateFormat.format(dateform));
-    //taille texte
+    
+    /**
+     * Taille du texte
+     */
     Font taille = new Font ("Arial", Font.BOLD, 16 );
 
 
+    /**
+     * 
+     * @throws IOException
+     */
     public LockScreen() throws IOException {
 
-        //Taille de l'Ã©cran smartphone
+        /**
+         * Réglage de la taille de l'écran
+         */
         setSize(480,700);
         setResizable(false);
 
-        //Bar Button avec les animations (ActionListener)
+        /**
+         * ActionListener liés aux boutons
+         */
         retour.addActionListener(new Select());
         delete.addActionListener(new Select());
         home.addActionListener(new Select());
-
-        //IncorporÃ© les images aux boutons avec certains rÃ©glages comme la taille et couleur
-        home.setMargin(new Insets( 0, 0, 0, 0));         // Enlever les marges
-        home.setIcon(hom);                              // ajout image reprÃ©sentant le home dans le bouton home
-        home.setPreferredSize(new Dimension(45, 45)); // taille bouton
-        home.setBackground(Color.black);             //couleur du bouton
+        
+        /**
+         * Incorpore les images aux boutons avec comme réglages:
+         * la suppression des marges
+         * l'icône du bouton
+         * sa taille
+         * sa couleur
+         */
+        home.setMargin(new Insets( 0, 0, 0, 0));         
+        home.setIcon(hom);                             
+        home.setPreferredSize(new Dimension(45, 45)); 
+        home.setBackground(Color.black);             
         home.setBorder(null);
 
         delete.setMargin(new Insets( 0, 0, 0, 0));
@@ -77,19 +105,23 @@ public class LockScreen extends MaskPhone {
         retour.setPreferredSize(new Dimension(45, 45));
         retour.setBackground(Color.black);
         retour.setBorder(null);
-        //Ajout de la bar Button au sud
+        
+        /**
+         * Ajout de la bar Button au sud
+         */
         south.add(delete);
         south.add(home);
         south.add(retour);
 
         add(south, BorderLayout.SOUTH);
 
-        //Heure
         setTimer();
 
 
 
-        //Ajout de l'heure et Swisscon au north
+        /**
+         * Ajout de l'heure et Swisscon au north
+         */
         north.setLayout(new BorderLayout());
         north.add(swisscom, BorderLayout.WEST);
         north.add(battery,BorderLayout.EAST);
@@ -101,8 +133,9 @@ public class LockScreen extends MaskPhone {
         add(center,BorderLayout.CENTER);
 
 
-        //Gestion des couleurs des JPANEL + Ã©critures
-
+        /**
+         * Gestion des couleurs des JPANEL + écritures
+         */
         north.setBackground(Color.darkGray);
         south.setBackground(Color.black);
         centerNorth.setOpaque(false);
@@ -117,20 +150,24 @@ public class LockScreen extends MaskPhone {
         Date.setFont(taille);
 
 
-        // heure centrale et date
+        /**
+         * heure centre et date
+         */
         centerNorth.setLayout(new BorderLayout());
-       centerNorth.add(Heure, BorderLayout.CENTER);
+        centerNorth.add(Heure, BorderLayout.CENTER);
         centerNorth.add(Date, BorderLayout.SOUTH);
-// Le panel CENTER est ajoutÃ© sÃ©parÃ©ement dans les autres inferfaces afin de pouvoir ajouter ce que l'on veut au centre.
-
+        
+        /**
+         * Le panel CENTER est ajouté séparéement dans les autres
+         * inferfaces afin de pouvoir ajouter
+         * ce que l'on veut au centre.
+         */
     }
-
-
-
-
+    
     /**
-     * Ã§a nous permet de rÃ©cupÃ©rer l'heure ainsi que le rafaÃ®chir
-     * @return le format de l'heure
+     * Permet d'obtenir l'heure du système
+     * @return l'heure
+     * 
      */
     private String getTime(){
         ajd = new Date();
@@ -138,9 +175,11 @@ public class LockScreen extends MaskPhone {
         return format.format(ajd);
     }
 
+    /**
+     * Permet de modifier l'heure
+     */
     private void setTimer(){
         timer.scheduleAtFixedRate(new TimerTask() {
-
             public void run() {
                 Heure.setText(LockScreen.this.getTime());
             }
@@ -148,12 +187,7 @@ public class LockScreen extends MaskPhone {
     }
 
 
-
-
-
-    class Select implements ActionListener {
-
-
+    class Select implements ActionListener {	
         public void actionPerformed(ActionEvent e) {
             HomeScreen ip = null;
             try {
@@ -163,39 +197,54 @@ public class LockScreen extends MaskPhone {
             }
 
             if(e.getSource() == retour){
-                //revient Ã  la fenÃªtre prÃ©cÃ¨demment ouverte
+                /**
+                 * revient à la fenêtre précèdemment ouverte
+                 */
                 setVisible(false);
                 ip.setVisible(true);
 
             }
             if(e.getSource() == delete){
-                //ferme toutes les fenÃªtres
+                /**
+                 * ferme toutes les fenêtres
+                 */
                 System.exit(0);
             }
-           if(e.getSource() == home){
-                //revenir sur l'interface principale
-
+            
+            if(e.getSource() == home){
+                /**
+                 * revenir sur l'interface principale
+                 */
                ip.setVisible(true);
                dispose();
             }
-
         }
-
-    }public class JPanelWithBackground extends JPanel {
-
+    }
+    
+    /**
+     * 
+     * Classe permettant la création 
+     * du fond d'écran.
+     *
+     */
+    public class JPanelWithBackground extends JPanel {
         private Image backgroundImage;
 
-        // Some code to initialize the background image.
-        // Here, we use the constructor to load the image. This
-        // can vary depending on the use case of the panel.
+        /**
+         * Permet d'initialiser le fond d'écran.
+         * @param fileName, le chemin système du fond d'écran
+         *
+         * @throws IOException
+         */
         public JPanelWithBackground(String fileName) throws IOException {
             backgroundImage = ImageIO.read(new File(fileName));
         }
 
+        /**
+         * Permet de dessiner notre fond d'écran
+         */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-
-            // Draw the background image.
             g.drawImage(backgroundImage, 0, 0, this);
         }
     }
