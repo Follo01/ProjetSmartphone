@@ -29,6 +29,8 @@ public  class MaskPhone extends JFrame {
     ImageIcon del = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/power.png");
 
     JLabel swisscom = new JLabel ("Swisscom");
+
+
     public JLabel battery  = new JLabel(getbatterypourcentPercent());
     //Heure et date
     Date ajd;

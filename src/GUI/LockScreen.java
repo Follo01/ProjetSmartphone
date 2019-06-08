@@ -122,7 +122,7 @@ public class LockScreen extends MaskPhone {
 
 
         /**
-         * Ajout de l'heure et Swisscon au north
+         * Ajout de l'heure et Swisscom au north
          */
         north.setLayout(new BorderLayout());
         north.add(swisscom, BorderLayout.WEST);
