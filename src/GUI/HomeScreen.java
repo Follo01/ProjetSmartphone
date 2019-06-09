@@ -1,32 +1,50 @@
 package GUI;
 
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ * Classe pour la page d accueil du telephone
+ * @author Gregory (mise en forme Diogo)
+ * @since 29.04.2019
+ */
 
 public class HomeScreen extends MaskPhone {
-
-    private JButton contact= new JButton();
-    private JButton follotunes= new JButton();
-    private JButton photo= new JButton();
-    private JPanelWithBackground apps = new JPanelWithBackground("img/background2.jpg") ;
-    private ImageIcon contct = new ImageIcon ("img/contact.png");
+    private JButton contact = new JButton();
+    private JButton follotunes = new JButton();
+    private JButton photo = new JButton();
+    private JPanelWithBackground apps = new JPanelWithBackground("img/background2.jpg");
+    private ImageIcon contct = new ImageIcon("img/contact.png");
     private ImageIcon follo = new ImageIcon("img/follotunes.png");
     private ImageIcon phot = new ImageIcon("img/photo.png");
-
-    private JLabel test= new JLabel("Bonjour");
-    //Permet de mettre en Arial, taille, et si on veut gras, italique... les différents textes
+    
+    /**
+     * Format de l heure
+     */
     private Font Theure = new Font ("Arial", Font.PLAIN, 100 );
 
     private JPanel center = new JPanel();
-
-    //private JPanelWithBackground center= new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/Fond d'écran.jpeg");
-    //private ... "C:/école HES-SO/ProjetSmartphone/img/Fond d'écran.jpeg"
+  
+    /**
+     * Constructeur de HomeScreen
+     * @throws IOException
+     */
     public HomeScreen() throws IOException {
         super();
 
@@ -35,40 +53,49 @@ public class HomeScreen extends MaskPhone {
         center.setLayout(new BorderLayout());
 
 
-        //mise en place des icon d'interface
-        // contact
-        contact.setMargin(new Insets( 0, 0, 0, 0));     //enlever les marges
-        contact.setIcon(contct);                        //Ajout des images reprensentant le bouton
-        contact.setBackground(new Color(0,0,0,0));      // taille bouton
-        contact.setOpaque(false);                       // bouton est opaque
-        contact.setBorder(null);                        //N'a pas de bordure
-        contact.setContentAreaFilled(false);            //Enleve le cadre autour
+        /**
+         * Mise en place des icones d application
+         * avec comme reglages :
+         * Sans marge
+         * Leur icone
+         * Leur taille
+         * L'opacit�
+         * Sans bordure
+         * Sans cadre
+         */
+        contact.setMargin(new Insets( 0, 0, 0, 0));    
+        contact.setIcon(contct);                     
+        contact.setBackground(new Color( 0, 0, 0, 0));      
+        contact.setOpaque(false);                       
+        contact.setBorder(null);                        
+        contact.setContentAreaFilled(false);       
 
+        follotunes.setMargin(new Insets( 0, 0, 0, 0));     
+        follotunes.setIcon(follo);                        
+        follotunes.setBackground(new Color( 0, 0, 0, 0));    
+        follotunes.setOpaque(false);                       
+        follotunes.setBorder(null);                     
+        follotunes.setContentAreaFilled(false);           
 
-        follotunes.setMargin(new Insets( 0, 0, 0, 0));     //enlever les marges
-        follotunes.setIcon(follo);                        //Ajout des images reprensentant le bouton
-        follotunes.setBackground(new Color(0,0,0,0));      // taille bouton
-        follotunes.setOpaque(false);                       // bouton est opaque
-        follotunes.setBorder(null);                        //N'a pas de bordure
-        follotunes.setContentAreaFilled(false);            //Enleve le cadre autour
+        photo.setMargin(new Insets( 0, 0, 0, 0));     
+        photo.setIcon(phot);                      
+        photo.setBackground(new Color( 0, 0, 0, 0));      
+        photo.setOpaque(false);                     
+        photo.setBorder(null);                        
+        photo.setContentAreaFilled(false);            
 
-        photo.setMargin(new Insets( 0, 0, 0, 0));     //enlever les marges
-        photo.setIcon(phot);                        //Ajout des images reprensentant le bouton
-        photo.setBackground(new Color(0,0,0,0));      // taille bouton
-        photo.setOpaque(false);                       // bouton est opaque
-        photo.setBorder(null);                        //N'a pas de bordure
-        photo.setContentAreaFilled(false);            //Enleve le cadre autour
-
-
-
-        //Animation des boutons
+        /**
+         * Liaison des listeners aux boutons
+         */
         contact.addActionListener(new Select());
         follotunes.addActionListener(new Select());
         photo.addActionListener(new Select());
 
         apps.setLayout( new FlowLayout() );
 
-        //remetre les heures sur la barre de Tache.
+        /**
+         * Informations generales sur la barre de taches
+         */
         north.add(swisscom,BorderLayout.WEST);
         north.add(Heure, BorderLayout.CENTER);
         Heure.setHorizontalAlignment(JLabel.CENTER);
@@ -83,37 +110,46 @@ public class HomeScreen extends MaskPhone {
         apps.add(follotunes);
         apps.add(photo);
 
-
-        //Mise en page
+        /**
+         * Mise en page
+         */
         apps.setBackground(Color.white);
-
-
-    }class JPanelWithBackground extends JPanel {
+    }
+    
+    /**
+     * Classe pour le fond d ecran
+     */
+    class JPanelWithBackground extends JPanel {
         private Image backgroundImage;
-
+        
+        /**
+         * Constructeur de JPanelWithBackgroun
+         * @param le chemin systeme du fond voulu
+         * @throws IOException
+         */
         public JPanelWithBackground(String fileName) throws IOException {
             backgroundImage = ImageIO.read(new File(fileName));
         }
-
+        
+        /**
+         * Permet de dessiner notre fond d ecran
+         * @param variable Graphics temporaire
+         */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            // Draw the background image.
             g.drawImage(backgroundImage, 0, 0, this);
-
         }
     }
 
-
-
-
-
-    class Select implements ActionListener{
-
+    class Select implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             HomeScreen ip = null;
-            if(e.getSource() == contact){
-                //ouvre la page contact lorsqu'on toujours le bouton qui y correspond
+            
+            /**
+             * Ouvre l'application correspondante
+             */
+            if(e.getSource()==contact) { 
                 Contact c;
                 try {
                     c = new Contact();
@@ -122,11 +158,9 @@ public class HomeScreen extends MaskPhone {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
-
-
             }
-            if(e.getSource() == follotunes){
+            
+            if(e.getSource()==follotunes) {
                 folloTunes f = null;
                 try {
                     f = new folloTunes();
@@ -135,9 +169,9 @@ public class HomeScreen extends MaskPhone {
                 }
                 f.setVisible(true);
                 dispose();
-
             }
-            if(e.getSource() == photo){
+            
+            if(e.getSource()==photo){
                 Photo p = null;
                 try {
                     p = new Photo();
@@ -147,8 +181,6 @@ public class HomeScreen extends MaskPhone {
                 p.setVisible(true);
                 dispose();
             }
-
         }
-
     }
 }
