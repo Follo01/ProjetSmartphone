@@ -1,11 +1,7 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.KeyboardFocusManager;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,15 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import GUI.MaskPhone.Select;
 
 public class BaseDialog extends JDialog {
     private JPanel south = new JPanel ();
@@ -100,10 +87,10 @@ public class BaseDialog extends JDialog {
         add(north, BorderLayout.NORTH);
 
         //Gestion des couleurs fond + écritures
-        north.setBackground(Color.darkGray);
+        north.setBackground(Color.BLACK);
         south.setBackground(Color.WHITE);
-        swisscom.setForeground(Color.white);
-        heure.setForeground(Color.white);
+        swisscom.setForeground(Color.WHITE);
+        heure.setForeground(Color.WHITE);
 
         swisscom.setFont(taille);
         heure.setFont(taille);

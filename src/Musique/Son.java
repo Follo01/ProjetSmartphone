@@ -1,10 +1,10 @@
 package Musique;
 
+import javax.sound.sampled.*;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import javax.sound.sampled.*;
 
 public class Son {
     private AudioFormat format;
@@ -76,7 +76,9 @@ public class Son {
         }
         line.drain();
         line.close();
-    }public void stop(InputStream source){
+    }
+    //la méthode se base sur play mais au lieu starter et stop
+    public void stop(InputStream source){
         int bufferSize = format.getFrameSize() * Math.round(format.getSampleRate() / 10);
         byte[] buffer = new byte[bufferSize];
         SourceDataLine line;

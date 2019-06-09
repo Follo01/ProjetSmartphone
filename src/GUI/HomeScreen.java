@@ -1,22 +1,12 @@
 package GUI;
 
 import javax.imageio.ImageIO;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 
 public class HomeScreen extends MaskPhone {
@@ -24,11 +14,11 @@ public class HomeScreen extends MaskPhone {
     private JButton contact= new JButton();
     private JButton follotunes= new JButton();
     private JButton photo= new JButton();
-    private JPanelWithBackground apps = new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/background2.jpg") ;
-    private ImageIcon contct = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/contact.png");
-    private ImageIcon app= new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/2048.png");
-    private ImageIcon follo = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/follotunes.png");
-    private ImageIcon phot = new ImageIcon("C:/école HES-SO/ProjetSmartphone/img/photo.png");
+    private JPanelWithBackground apps = new JPanelWithBackground("img/background2.jpg") ;
+    private ImageIcon contct = new ImageIcon ("img/contact.png");
+    private ImageIcon follo = new ImageIcon("img/follotunes.png");
+    private ImageIcon phot = new ImageIcon("img/photo.png");
+
     private JLabel test= new JLabel("Bonjour");
     //Permet de mettre en Arial, taille, et si on veut gras, italique... les différents textes
     private Font Theure = new Font ("Arial", Font.PLAIN, 100 );

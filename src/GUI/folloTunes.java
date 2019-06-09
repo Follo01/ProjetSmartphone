@@ -1,5 +1,8 @@
 package GUI;
 
+import Musique.Son;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,35 +11,32 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.swing.*;
-import Musique.Son;
-
 
 public class folloTunes extends MaskPhone {
     protected JPanel centre = new JPanel();
 
-    protected File firstFile= new File("musique/Canton of Valais  Cantón del Valais (Switzerland  Suiza ).wav");
+    protected File firstFile= new File("musique/Canton of Valais (Switzerland  Suiza ).wav");
     protected JButton firstButton = new JButton(firstFile.getName());
 
 
 
-    protected File secondFile= new File("img/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
+    protected File secondFile= new File("musique/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
     protected JButton secondButton = new JButton(secondFile.getName());
 
 
-    protected File thirdFile= new File("img/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
+    protected File thirdFile= new File("musique/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
     protected JButton thirdButton = new JButton(thirdFile.getName());
 
 
-    protected File fourthFile= new File("img/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
+    protected File fourthFile= new File("musique/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
     protected JButton fourthButton = new JButton(fourthFile.getName());
 
 
-    protected File fifthFile= new File("img/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
+    protected File fifthFile= new File("musique/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
     protected JButton fifthButton = new JButton(fifthFile.getName());
 
 
-    protected File sixthFile= new File("img/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
+    protected File sixthFile= new File("musique/Lifelight (Main Theme Song) [Japanese] - Super Smash Bros. Ultimate Soundtrack.wav");
     protected JButton sixthButton = new JButton(sixthFile.getName());
 
 
@@ -112,163 +112,72 @@ public class folloTunes extends MaskPhone {
         fourthButton.addActionListener(new Select());
         fifthButton.addActionListener(new Select());
         sixthButton.addActionListener(new Select());
-        stop.addActionListener(new Select());
-        play.addActionListener(new Select());
-
         add(centre);
     }
     class Select implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
 
-            Son music1=new Son(firstFile.getPath());
-            Son music2=new Son(secondFile.getPath());
-            Son music3=new Son(thirdFile.getPath());
-            Son music4=new Son(fourthFile.getPath());
-            Son music5=new Son(fifthFile.getPath());
-            Son music6=new Son(sixthFile.getPath());
-            InputStream stream ;
-
-
-            try {
-                retour1 = new retourmusique(firstFile.getPath());
-                retour1.setCpt(1);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour2 = new retourmusique(secondFile.getPath());
-                retour2.setCpt(2);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour3 = new retourmusique(thirdFile.getPath());
-                retour3.setCpt(3);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour4 = new retourmusique(fourthFile.getPath());
-                retour4.setCpt(4);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour5 = new retourmusique(fifthFile.getPath());
-
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                retour6 = new retourmusique(sixthFile.getPath());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-
             if (e.getSource() == firstButton) {
+                try {
+                    retour1 = new retourmusique(firstFile.getPath());
 
-
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 retour1.setVisible(true);
                 retour1.pack();
             }
 
             if (e.getSource() == secondButton) {
+                try {
+                    retour2 = new retourmusique(secondFile.getPath());
 
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 retour2.setVisible(true);
                 retour2.pack();
             }
 
             if (e.getSource() == thirdButton) {
-
+                try {
+                    retour3 = new retourmusique(thirdFile.getPath());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 retour3.setVisible(true);
                 retour3.pack();
             }
 
             if (e.getSource() == fourthButton) {
-                retour4.setCpt(4);
+                try {
+                    retour4 = new retourmusique(fourthFile.getPath());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 retour4.setVisible(true);
                 retour4.pack();
-
             }
 
             if (e.getSource() == fifthButton) {
-                retour5.setCpt(5);
+                try {
+                    retour5 = new retourmusique(fifthFile.getPath());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 retour5.setVisible(true);
                 retour5.pack();
             }
 
             if (e.getSource() == sixthButton) {
-                retour6.setCpt(6);
+                try {
+                    retour6 = new retourmusique(sixthFile.getPath());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 retour6.setVisible(true);
                 retour6.pack();
-
-            }
-
-
-
-            if (e.getSource() == stop) {
-
-                if (retour1.getCpt() == 1) {
-                    stream = new ByteArrayInputStream(music1.getSamples());
-                    music1.stop(stream);
-
-                    dispose();
-                }
-                if (retour2.getCpt() == 2) {
-                    stream = new ByteArrayInputStream(music2.getSamples());
-                    music2.stop(stream);
-                    dispose();
-                }
-                if (retour3.getCpt() == 3) {
-                    stream = new ByteArrayInputStream(music3.getSamples());
-                    music3.stop(stream);
-                    dispose();
-                }
-                if (retour4.getCpt() == 4){
-                    stream = new ByteArrayInputStream(music4.getSamples());
-                music4.stop(stream);
-                dispose();
-                }
-                if(retour5.getCpt()==5) {
-                    stream = new ByteArrayInputStream(music5.getSamples());
-                    music5.stop(stream);
-                    dispose();
-                }
-                if(retour6.getCpt()==6) {
-                    stream = new ByteArrayInputStream(music6.getSamples());
-                    music6.stop(stream);
-                    dispose();
-                }
-            }
-
-            if (e.getSource() == play) {
-
-                    if(retour1.getCpt()==1) {
-                        stream = new ByteArrayInputStream(music1.getSamples());
-                        music1.play(stream);
-                    }
-                    if(retour2.getCpt()==2) {
-                        stream = new ByteArrayInputStream(music2.getSamples());
-                        music2.play(stream);
-                    }
-                    if(retour3.getCpt()==3) {
-                        stream = new ByteArrayInputStream(music3.getSamples());
-                        music3.play(stream);
-                    }
-                    if(retour4.getCpt()==4) {
-                        stream = new ByteArrayInputStream(music4.getSamples());
-                        music4.play(stream);
-                    }
-                    if(retour5.getCpt()==5) {
-                        stream = new ByteArrayInputStream(music5.getSamples());
-                        music5.play(stream);
-                    }
-                    if(retour6.getCpt()==6) {
-                        stream = new ByteArrayInputStream(music6.getSamples());
-                        music6.play(stream);
-                    }
             }
 
         }
@@ -290,6 +199,7 @@ public class folloTunes extends MaskPhone {
          */
         public retourmusique(String chemin) throws IOException {
 
+            System.out.println(chemin);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
             this.chemin = chemin;
@@ -317,6 +227,25 @@ public class folloTunes extends MaskPhone {
             ButtonPanel.setBackground(Color.LIGHT_GRAY);
             ButtonPanel.add(stop);
             ButtonPanel.add(play);
+
+            play.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Son music= new Son(chemin);
+                    InputStream stream=new ByteArrayInputStream(music.getSamples());
+                    music.play(stream);
+                }
+            });
+
+            stop.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Son music= new Son(chemin);
+                    InputStream stream=new ByteArrayInputStream(music.getSamples());
+                    music.stop(stream);
+                    dispose();
+                }
+            });
 
             add(ButtonPanel, BorderLayout.SOUTH);
 

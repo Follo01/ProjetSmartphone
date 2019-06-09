@@ -1,27 +1,12 @@
 package Contact;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import javax.swing.table.TableModel;
-
 import GUI.Contact;
 import Serialization.Serialization;
-import Contact.InfoContact;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ListeContact {
@@ -37,7 +22,7 @@ public class ListeContact {
         this.Cont = Cont;
 
         //Déséralisation
-        contacts = (List<InfoContact>) Serialization.deseralisation("C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
+        contacts = (List<InfoContact>) Serialization.deseralisation("src/Contact/contact.txt");
 
     }
 
@@ -45,21 +30,21 @@ public class ListeContact {
     public void  addContact (int chiffre){
         contacts.add(new InfoContact(Cont.getTextNom(), Cont.getTextPrenom(), Cont.getTextTel(), chiffre));
         //Serialisation
-        Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
+        Serialization.serialisation(contacts, "src/Contact/contact.txt");
     }
 
     //Suprimer un Contact
     public void deleteContact (int chiffre){
         contacts.remove(chiffre);
         //Serialisation
-        Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
+        Serialization.serialisation(contacts, "src/Contact/contact.txt");
     }
 
     //Editer un Contact
     public void editContact (int chiffre, InfoContact ic){
         contacts.set(chiffre, ic);
         //Serialisation
-        Serialization.serialisation(contacts, "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
+        Serialization.serialisation(contacts, "src/Contact/contact.txt");
     }
 
     //Inserer l'Arraylist dans un tableau pour pouvoir y accéder avec la JTable
@@ -80,10 +65,10 @@ public class ListeContact {
     //Création d'un fichier .txt pour faire la sérialisation (si fichier inexistant)
     private void creationFichier()
     {
-        File fichier = new File("C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt") ;
+        File fichier = new File("src/Contact/contact.txt") ;
         if (fichier.exists()==false)
         {
-            Serialization.serialisation(new ArrayList<InfoContact>(), "C:/école HES-SO/ProjetSmartphone/src/Contact/contact.txt");
+            Serialization.serialisation(new ArrayList<InfoContact>(), "src/Contact/contact.txt");
         }
     }
 }

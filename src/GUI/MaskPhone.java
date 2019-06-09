@@ -1,16 +1,16 @@
 package GUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
-import javax.imageio.ImageIO;
-import java.io.File;
 
 
 public  class MaskPhone extends JFrame {
@@ -24,9 +24,9 @@ public  class MaskPhone extends JFrame {
     JButton delete = new JButton();
     JButton retour= new JButton();
 
-    ImageIcon ret = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/back.png");
-    ImageIcon hom = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/home.png");
-    ImageIcon del = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/power.png");
+    ImageIcon ret = new ImageIcon ("img/back.png");
+    ImageIcon hom = new ImageIcon ("img/home.png");
+    ImageIcon del = new ImageIcon ("img/power.png");
 
     JLabel swisscom = new JLabel ("Swisscom");
     /**

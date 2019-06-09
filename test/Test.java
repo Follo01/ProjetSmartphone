@@ -39,7 +39,6 @@ public class Test {
     public void testOuvertureFrame(){
         assertTrue(testFrame.isVisible()==true);
     }
-
 }
 
 class TestJUNIT implements Serializable{

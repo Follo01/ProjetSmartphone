@@ -2,18 +2,18 @@
 package GUI;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.imageio.ImageIO;
-import java.io.File;
 
 /**
  * 
@@ -29,8 +29,8 @@ public class LockScreen extends MaskPhone {
      */	
     JPanel south = new JPanel ();
     JPanel north = new JPanel ();
-    JPanelWithBackground center= new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/background.jpg");
-    JPanelWithBackground background=new JPanelWithBackground("C:/école HES-SO/ProjetSmartphone/img/background.jpg");
+    JPanelWithBackground center= new JPanelWithBackground("img/background.jpg");
+    JPanelWithBackground background=new JPanelWithBackground("img/background.jpg");
     JPanel centerNorth= new JPanel();
     
     /**
@@ -40,9 +40,9 @@ public class LockScreen extends MaskPhone {
     JButton home = new JButton();
     JButton delete = new JButton();
 
-    ImageIcon ret = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/back.png");
-    ImageIcon hom = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/home.png");
-    ImageIcon del = new ImageIcon ("C:/école HES-SO/ProjetSmartphone/img/power.png");
+    ImageIcon ret = new ImageIcon ("img/back.png");
+    ImageIcon hom = new ImageIcon ("img/home.png");
+    ImageIcon del = new ImageIcon ("img/power.png");
 
     /**
      * Heure et date

@@ -1,15 +1,14 @@
 package GUI;
 
+import Contact.InfoContact;
+import Contact.ListeContact;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
-
-import javax.swing.*;
-
-import Contact.InfoContact;
-import Contact.ListeContact;
 
 
 /**
@@ -493,6 +492,7 @@ public class Contact extends MaskPhone implements Serializable {
                     JLabel image4 = new JLabel(ph.fourthImage);
                     center.add(image4);
                     break;
+
 
             }
 
