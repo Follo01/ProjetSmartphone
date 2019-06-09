@@ -7,9 +7,8 @@ import java.util.Scanner;
 
 /**
  * Classe la lecture du fichier audio
- * @author
- * @since
- * from
+ * @author Vishal Garg
+ * from https://www.geeksforgeeks.org/play-audio-file-using-java/
  */
 public class Son2 {
     // to store current position
