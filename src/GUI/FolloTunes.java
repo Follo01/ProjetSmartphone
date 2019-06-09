@@ -11,33 +11,35 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Classe pour l'application folloTunes
+ * @author Gregory et Diogo (mise en forme Diogo)
+ * @since 03.06.2019
+ *
+ */
 public class FolloTunes extends MaskPhone {
     protected JPanel centre = new JPanel();
 
+    /**
+     * Creation des boutons
+     */
     protected File firstFile= new File( "musique/Canton of Valais (Switzerland  Suiza ).wav");
     protected JButton firstButton = new JButton(firstFile.getName());
-
 
     protected File secondFile= new File("musique/Lifelight (Main Theme Song) [Japanese].wav");
     protected JButton secondButton = new JButton(secondFile.getName());
 
-
     protected File thirdFile= new File("musique/Abreu Tico Tico  Barenboim  Berliner Philharmoniker.wav");
     protected JButton thirdButton = new JButton(thirdFile.getName());
-
 
     protected File fourthFile= new File("musique/George Frideric Handels - Water Music.wav");
     protected JButton fourthButton = new JButton(fourthFile.getName());
 
-
     protected File fifthFile= new File("musique/Dvorak Symphony 9,  Allegro Con Fuoco.wav");
     protected JButton fifthButton = new JButton(fifthFile.getName());
 
-
     protected File sixthFile= new File("musique/Jean Baptiste Lully -Marche pour la ceremonie des Turcs.wav");
     protected JButton sixthButton = new JButton(sixthFile.getName());
-
 
     protected JButton stop = new JButton();
     protected ImageIcon retourIcon = new ImageIcon("img/Stop.png");
@@ -47,10 +49,21 @@ public class FolloTunes extends MaskPhone {
 
     protected JButton pause = new JButton();
     protected ImageIcon pauseIcon = new ImageIcon("img/pause.png");
-
+    
+    /**
+     * Attributs pour les frames d'affichage
+     */
     Retourmusique retour1, retour2, retour3, retour4, retour5, retour6;
 
-    public FolloTunes() throws IOException{
+    /**
+     * Constructeur de FolloTunes
+     * @throws IOException
+     */
+    public FolloTunes() throws IOException {
+    	/**
+    	 * Barre du haut avec les differentes informations 
+    	 * du telephone
+    	 */
         north.add(swisscom,BorderLayout.WEST);
         north.add(Heure, BorderLayout.CENTER);
         Heure.setHorizontalAlignment(JLabel.CENTER);
@@ -61,6 +74,10 @@ public class FolloTunes extends MaskPhone {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //centre.setLayout(new GridLayout(5,0,0,0));
 
+        /**
+         * Mise en forme des boutons et 
+         * ajout dans le panel principal
+         */
         firstButton.setPreferredSize(new Dimension(480, 45));
         //firstpanel.setLayout(new FlowLayout());
         centre.add(firstButton);
@@ -76,38 +93,34 @@ public class FolloTunes extends MaskPhone {
         fourthButton.setPreferredSize(new Dimension(480, 45));
         centre.add(fourthButton);
 
-
         fifthButton.setPreferredSize(new Dimension(480, 45));
         centre.add(fifthButton);
-
 
         sixthButton.setPreferredSize(new Dimension(480, 45));
         centre.add(sixthButton);
 
-
         firstButton.setContentAreaFilled(false);
         firstButton.setBorder(null);
-
 
         secondButton.setContentAreaFilled(false);
         secondButton.setBorder(null);
 
-
         thirdButton.setContentAreaFilled(false);
         thirdButton.setBorder(null);
-
 
         fourthButton.setContentAreaFilled(false);
         fourthButton.setBorder(null);
 
-
         fifthButton.setContentAreaFilled(false);
         fifthButton.setBorder(null);
 
-
         sixthButton.setContentAreaFilled(false);
         sixthButton.setBorder(null);
-
+        
+        
+        /**
+         * Liaison des listeners avec les boutons
+         */
         firstButton.addActionListener(new Select());
         secondButton.addActionListener(new Select());
         thirdButton.addActionListener(new Select());
@@ -116,14 +129,17 @@ public class FolloTunes extends MaskPhone {
         sixthButton.addActionListener(new Select());
         add(centre);
     }
+    
+    
     class Select implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-
-            if (e.getSource() == firstButton) {
+        public void actionPerformed(ActionEvent e) {  
+        	
+        	/**
+        	 * Ouvrir la fenetre
+        	 */
+            if(e.getSource() == firstButton) {
                 try {
                     retour1 = new Retourmusique(firstFile.getPath());
-
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -131,10 +147,9 @@ public class FolloTunes extends MaskPhone {
                 retour1.pack();
             }
 
-            if (e.getSource() == secondButton) {
+            if(e.getSource() == secondButton) {
                 try {
                     retour2 = new Retourmusique(secondFile.getPath());
-
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -142,7 +157,7 @@ public class FolloTunes extends MaskPhone {
                 retour2.pack();
             }
 
-            if (e.getSource() == thirdButton) {
+            if(e.getSource() == thirdButton) {
                 try {
                     retour3 = new Retourmusique(thirdFile.getPath());
                 } catch (IOException e1) {
@@ -172,7 +187,7 @@ public class FolloTunes extends MaskPhone {
                 retour5.pack();
             }
 
-            if (e.getSource() == sixthButton) {
+            if (e.getSource()==sixthButton) {
                 try {
                     retour6 = new Retourmusique(sixthFile.getPath());
                 } catch (IOException e1) {
@@ -181,10 +196,12 @@ public class FolloTunes extends MaskPhone {
                 retour6.setVisible(true);
                 retour6.pack();
             }
-
         }
     }
-
+    
+    /**
+     * Classe pour la fenetre d affichage
+     */
     class Retourmusique extends FolloTunes {
         String chemin;
         ImageIcon icone;
@@ -192,26 +209,18 @@ public class FolloTunes extends MaskPhone {
         JLabel description;
         JPanel milieu;
         JPanel ButtonPanel = new JPanel();
-        int cpt;
         Son2 audioPlayer ;
 
-
         /**
-         * @param chemin le chemin d'accès de l'image.
+         * Constructeur de RetourMusique
+         * @param chemin le chemin d'acc�s du fichier son
          */
         public Retourmusique(String chemin) throws IOException {
 
-            System.out.println(chemin);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
             this.chemin = chemin;
-            try {
-                audioPlayer= new Son2(chemin);
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
+
             icone = new ImageIcon("img/iconmusic.png");
             label = new JLabel(icone);
             milieu = new JPanel();
@@ -230,7 +239,7 @@ public class FolloTunes extends MaskPhone {
             play.setIcon(playIcon);
             play.setContentAreaFilled(false);
             play.setBorder(null);
-
+            
             pause.setIcon(pauseIcon);
             pause.setContentAreaFilled(false);
             pause.setBorder(null);
@@ -241,62 +250,38 @@ public class FolloTunes extends MaskPhone {
             ButtonPanel.add(pause);
             ButtonPanel.add(play);
 
+            /**
+             * ActionListeners creent pour jouer et stopper la musique
+             */
             play.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //audioPlayer .play();
-                    try {
-                        audioPlayer .resumeAudio();
-                    } catch (UnsupportedAudioFileException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    } catch (LineUnavailableException e1) {
-                        e1.printStackTrace();
-                    }
+                    Son music= new Son(chemin);
+                    InputStream stream=new ByteArrayInputStream(music.getSamples());
+                    music.play(stream);
                 }
             });
 
             stop.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        audioPlayer.stop();
-                    } catch (UnsupportedAudioFileException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    } catch (LineUnavailableException e1) {
-                        e1.printStackTrace();
-                    }
+                    Son music= new Son(chemin);
+                    InputStream stream=new ByteArrayInputStream(music.getSamples());
+                    music.stop(stream);
                     dispose();
                 }
             });
-
-            pause.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    audioPlayer .pause();
-                }
-            });
-
             add(ButtonPanel, BorderLayout.SOUTH);
-
-
-        }/**
-         *
-         * @return le chemin d'accès de l'image.
+        }
+        
+        /**
+         * Permet d obtenir le chemin d acces du fichier
+         * @return le chemin d acces de l image
          *
          */
         public String getPath() {
             return this.chemin;
         }
-        public int getCpt(){
-            return this.cpt;
-        }
-        public void  setCpt(int cpt){
-            this.cpt=cpt;
-        }
+        
     }
 }
