@@ -216,11 +216,18 @@ public class FolloTunes extends MaskPhone {
          * @param chemin le chemin d'accès du fichier son
          */
         public Retourmusique(String chemin) throws IOException {
-
+        	
+        	System.out.println(chemin);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
             this.chemin = chemin;
-
+            try {
+                audioPlayer= new Son2(chemin);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
             icone = new ImageIcon("img/iconmusic.png");
             label = new JLabel(icone);
             milieu = new JPanel();
@@ -256,19 +263,40 @@ public class FolloTunes extends MaskPhone {
             play.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Son music= new Son(chemin);
-                    InputStream stream=new ByteArrayInputStream(music.getSamples());
-                    music.play(stream);
+                    //audioPlayer .play();
+                    try {
+                        audioPlayer .resumeAudio();
+                    } catch (UnsupportedAudioFileException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    } catch (LineUnavailableException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             });
 
             stop.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Son music= new Son(chemin);
-                    InputStream stream=new ByteArrayInputStream(music.getSamples());
-                    music.stop(stream);
+
+                    try {
+                        audioPlayer.stop();
+                    } catch (UnsupportedAudioFileException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    } catch (LineUnavailableException e1) {
+                        e1.printStackTrace();
+                    }
                     dispose();
+                }
+            });
+
+            pause.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    audioPlayer .pause();
                 }
             });
             add(ButtonPanel, BorderLayout.SOUTH);
@@ -282,6 +310,7 @@ public class FolloTunes extends MaskPhone {
         public String getPath() {
             return this.chemin;
         }
+        
         
     }
 }
