@@ -1,38 +1,60 @@
 package Contact;
 
 import java.io.Serializable;
-public class InfoContact implements Serializable{
+
+/**
+ * Classe regroupant les informations des Contacts
+ * @author Gregory (mise en forme Diogo)
+ * @since 31.05.2019
+ */
+public class InfoContact implements Serializable {
     protected String nom;
     protected String prenom;
     protected String numTelephone;
     protected int photo;
 
-    //Donnée du contact
-    public InfoContact(String nom, String prenom, String numTelephone, int photo){
-        this.nom=nom;
-        this.prenom=prenom;
-        this.numTelephone=numTelephone;
-        this.photo=photo;
-
+    /**
+     * Constructeur d InfoContact
+     * @param son nom, prenom, numero de telephone et sa photo
+     */
+    public InfoContact(String nom, String prenom, String numTelephone, int photo) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.numTelephone = numTelephone;
+        this.photo = photo;
     }
 
-    //Accéder au information du contact
-    public String getNom()
-    {
+    /**
+     * Permet d obtenir le nom du contact
+     * @return son nom
+     */
+    public String getNom() {
         return nom;
     }
-
-    public String getPrenom()
-    {
+    
+    /**
+     * Permet d obtenir le prenom du contact
+     * @return son prenom
+     */
+    public String getPrenom() {
         return prenom;
     }
 
-    public String getNumTelephone()
-    {
+    /**
+     * Permet d obtenir le numero de telephone
+     * du contact
+     * @return son numero de telephone
+     */
+    public String getNumTelephone() {
         return numTelephone;
     }
-    public int getPhoto()
-    {
+    
+    /**
+     * Permet d obtenir le numero de la photo
+     * du contact
+     * @return le numero de la photo
+     */
+    public int getPhoto() {
         return photo;
     }
 }
