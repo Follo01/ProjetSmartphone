@@ -16,19 +16,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * 
+ * Classe pour l ecran verrouille
  * @author gregory
+ * @since 30.04.2019
  *
  */
-
-
 public class LockScreen extends MaskPhone {
     /**
      * South : tous les boutons retour, home, delete
-     * North : l'heure et le texte "Swisscon"
+     * North : l heure et le texte "Swisscom"
      */	
-    JPanel south = new JPanel ();
-    JPanel north = new JPanel ();
+    JPanel south = new JPanel();
+    JPanel north = new JPanel();
     JPanelWithBackground center= new JPanelWithBackground("img/background.jpg");
     JPanelWithBackground background=new JPanelWithBackground("img/background.jpg");
     JPanel centerNorth= new JPanel();
@@ -71,22 +70,22 @@ public class LockScreen extends MaskPhone {
     public LockScreen() throws IOException {
 
         /**
-         * Réglage de la taille de l'écran
+         * Reglage de la taille de l ecran
          */
         setSize(480,700);
         setResizable(false);
 
         /**
-         * ActionListener liés aux boutons
+         * ActionListener lies aux boutons
          */
         retour.addActionListener(new Select());
         delete.addActionListener(new Select());
         home.addActionListener(new Select());
         
         /**
-         * Incorpore les images aux boutons avec comme réglages:
+         * Incorpore les images aux boutons avec comme reglages:
          * la suppression des marges
-         * l'icône du bouton
+         * l icone du bouton
          * sa taille
          * sa couleur
          */
@@ -109,7 +108,7 @@ public class LockScreen extends MaskPhone {
         retour.setBorder(null);
         
         /**
-         * Ajout de la bar Button au sud
+         * Ajout de la barre Button au sud
          */
         south.add(delete);
         south.add(home);
@@ -122,7 +121,7 @@ public class LockScreen extends MaskPhone {
 
 
         /**
-         * Ajout de l'heure et Swisscom au north
+         * Ajout de l heure et Swisscom au north
          */
         north.setLayout(new BorderLayout());
         north.add(swisscom, BorderLayout.WEST);
@@ -136,7 +135,7 @@ public class LockScreen extends MaskPhone {
 
 
         /**
-         * Gestion des couleurs des JPANEL + écritures
+         * Gestion des couleurs des JPANEL + ecritures
          */
         north.setBackground(Color.darkGray);
         south.setBackground(Color.black);
@@ -153,22 +152,22 @@ public class LockScreen extends MaskPhone {
 
 
         /**
-         * heure centre et date
+         * Heure centre et date
          */
         centerNorth.setLayout(new BorderLayout());
         centerNorth.add(Heure, BorderLayout.CENTER);
         centerNorth.add(Date, BorderLayout.SOUTH);
         
         /**
-         * Le panel CENTER est ajouté séparéement dans les autres
+         * Le panel CENTER est ajoute separement dans les autres
          * inferfaces afin de pouvoir ajouter
-         * ce que l'on veut au centre.
+         * ce que l on veut au centre
          */
     }
     
     /**
-     * Permet d'obtenir l'heure du système
-     * @return l'heure
+     * Permet d obtenir l heure du systeme
+     * @return l heure
      * 
      */
     private String getTime(){
@@ -178,7 +177,7 @@ public class LockScreen extends MaskPhone {
     }
 
     /**
-     * Permet de modifier l'heure
+     * Permet de modifier l heure
      */
     private void setTimer(){
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -200,7 +199,7 @@ public class LockScreen extends MaskPhone {
 
             if(e.getSource() == retour){
                 /**
-                 * revient à la fenêtre précèdemment ouverte
+                 * Revient a la fenetre precedemment ouverte
                  */
                 setVisible(false);
                 ip.setVisible(true);
@@ -208,14 +207,14 @@ public class LockScreen extends MaskPhone {
             }
             if(e.getSource() == delete){
                 /**
-                 * ferme toutes les fenêtres
+                 * Ferme toutes les fenetres
                  */
                 System.exit(0);
             }
             
             if(e.getSource() == home){
                 /**
-                 * revenir sur l'interface principale
+                 * Revenir sur l interface principale
                  */
                ip.setVisible(true);
                dispose();
@@ -225,16 +224,16 @@ public class LockScreen extends MaskPhone {
     
     /**
      * 
-     * Classe permettant la création 
-     * du fond d'écran.
+     * Classe permettant la creation 
+     * du fond d ecran
      *
      */
     public class JPanelWithBackground extends JPanel {
         private Image backgroundImage;
 
         /**
-         * Permet d'initialiser le fond d'écran.
-         * @param fileName, le chemin système du fond d'écran
+         * Permet d initialiser le fond d écran.
+         * @param fileName, le chemin systeme du fond d ecran
          *
          * @throws IOException
          */
@@ -243,7 +242,7 @@ public class LockScreen extends MaskPhone {
         }
 
         /**
-         * Permet de dessiner notre fond d'écran
+         * Permet de dessiner notre fond d ecran
          */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
