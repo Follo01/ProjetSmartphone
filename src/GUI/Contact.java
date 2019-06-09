@@ -1,64 +1,83 @@
-package GUI;
 
-import Contact.InfoContact;
-import Contact.ListeContact;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.swing.*;
+
+import Contact.InfoContact;
+import Contact.ListeContact;
 
 /**
- * @author Gregory
- * @version 1.0
+ * Classe de l'application Contact
+ * @author Gregory (mise en forme Diogo)
  * @since 31.05.2019
- * Cette classe permet de crées un contact qui peut-être utiliser dans un smartphone.
- *
- *
  */
 public class Contact extends MaskPhone implements Serializable {
     private ListeContact liste;
 
 
+    /**
+     * Panel nord, sud et centre
+     */
     private JPanel pNorth = new JPanel();
     private JPanel pSouth = new JPanel();
     JPanel center = new JPanel();
 
+    /**
+     * Tableau et scroll barre 
+     */
     private JTable tableau;
     private JScrollPane scroll;
 
-    JTextField nom = new JTextField( 30 );
-    JTextField prenom = new JTextField( 30 );
-    JTextField tel = new JTextField( 30 );
+    /**
+     * Creation et reglages des champs
+     */
+    JTextField nom = new JTextField(30);
+    JTextField prenom = new JTextField(30);
+    JTextField tel = new JTextField(30);
 
+    /**
+     * Principaux labels de l application
+     */
     JLabel TextNom = new JLabel("Nom :");
     JLabel TextPrenom = new JLabel("Prenom :");
-    JLabel TextTel = new JLabel("Numéro de téléphone :");
+    JLabel TextTel = new JLabel("Numero de telephone :");
     JLabel TextErreur;
     JLabel AfficherNom = new JLabel();
     JLabel AfficherPrenom = new JLabel();
     JLabel AfficherTel = new JLabel();
 
-    private JButton ajouter = new JButton ("Ajouter");
-    private JButton ajouter2 = new JButton ("Ajouter");
-    private JButton supprimer= new JButton("Supprimer");
-    private JButton modifier= new JButton("Modifier");
-    private JButton modifier2= new JButton("Modifier");
-    private JButton ok= new JButton("OK");
-    private JButton okErreur= new JButton("OK");
-    private JButton afficherContact= new JButton("Info");
-    private JButton ajouterPhoto= new JButton("Ajouter une photo");
+    /**
+     * Principaux boutons de l application
+     */
+    private JButton ajouter = new JButton("Ajouter");
+    private JButton ajouter2 = new JButton("Ajouter");
+    private JButton supprimer = new JButton("Supprimer");
+    private JButton modifier = new JButton("Modifier");
+    private JButton modifier2 = new JButton("Modifier");
+    private JButton ok = new JButton("OK");
+    private JButton okErreur = new JButton("OK");
+    private JButton afficherContact = new JButton("Info");
+    private JButton ajouterPhoto = new JButton("Ajouter une photo");
 
     JButton image1 = new JButton();
     JButton image2 = new JButton();
     JButton image3 = new JButton();
     JButton image4 = new JButton();
+    JButton image5 = new JButton();
+    JButton image6 = new JButton();
 
-    Font taille = new Font ("Arial", Font.PLAIN, 15 );
+    /**
+     * Police du texte
+     */
+    Font taille = new Font("Arial", Font.PLAIN, 15);
 
+    /**
+     * Les differentes classes et frames
+     */
     private FrameAdd fenetreAjout;
     private FrameEdit fenetreEdit;
     private JDialog fenetreErreur;
@@ -66,56 +85,92 @@ public class Contact extends MaskPhone implements Serializable {
     private JDialog fenetrePhoto;
 
     private Photo ph;
-
-    //permet de savoir si on est dans l'application de Contact ou pas... pour permettre le lien avec la galerie
-    boolean siContact=true;
-    //représente le chiffre de la photo séléctionné... 0 est égal à aucune photo
+    
+    /**
+     * Permet de savoir si l utilisateur se trouve
+     * dans l application Contact ou non.
+     * Lien avec la galerie d image
+     */
+    boolean siContact = true;
+        
+    /**
+     * Represente le chiffre de la photo selectionnee,
+     * 0 etant egale a aucune photo
+     */
     int chiffrePhoto = 0;
-    //empèche d'ouvrir 2 fenêtre
-    boolean erreurDouble=false;
-    //empèche de créer 2 fois un contact
-    boolean creation=false;
+    
+    /**
+     * Empeche l utilisateur d ouvrir 
+     * deux fenetres
+     */
+    boolean erreurDouble = false;
+      
+    /**
+     * Empeche l utilisateur de creer
+     * deux fois un contact
+     */
+    boolean creation = false;
 
+    /**
+     * Constructeur de Contact
+     * @throws IOException
+     */
     public Contact () throws IOException{
         super();
 
-        //lien avec ListeContact
+        /**
+         * Lien avec ListeContact
+         */
         liste = new ListeContact(this);
 
-        //Création de la JTable
+        /**
+         * Creation de la table
+         */
         tableau = new JTable(liste.getArray2D(), new Object[] {"Nom", "Prenom"});
         tableau.setRowHeight(40);
 
-        //création de la JScroll
+        /**
+         * Creation de la scroll barre
+         */
         scroll = new JScrollPane(tableau);
 
-        //taille du scroll
-        scroll.setPreferredSize( new
- Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 500 ) );
+        /**
+         * Reglages de la scroll barre
+         */
+        scroll.setPreferredSize(new
+        Dimension((int) getContentPane().getPreferredSize().getWidth()-10, 500));
         setTitle("Contact");
-
-        // Ajout du listener au bouton "Ajouter" de la fenêtre d'ajout
-        ajouter.addActionListener(new SelectButton(  ));
-        supprimer.addActionListener(new SelectButton(  ));
-        modifier.addActionListener(new SelectButton(  ));
-        afficherContact.addActionListener(new SelectButton(  ));
-
-
-        //Ajout des coordonnées 1ère fenêtre
+       
+        /**
+         * Liaison des listeners aux boutons y relatifs
+         */
+        ajouter.addActionListener(new SelectButton());
+        supprimer.addActionListener(new SelectButton());
+        modifier.addActionListener(new SelectButton());
+        afficherContact.addActionListener(new SelectButton());
+  
+        /**
+         * Ajout de la scroll barre dans le panel nord
+         * et ce dernier dans le panel centre
+         */
         pNorth.add(scroll);
-        center.add(pNorth, BorderLayout.NORTH); // Ajout du panel pNorth dans le panel CENTER
+        center.add(pNorth, BorderLayout.NORTH); 
 
-
-        //Ajout des boutons
+        /**
+         * Ajout des boutons dans le panel sud
+         * et ce dernier dans le panel centre
+         */
         pSouth.add(afficherContact);
         pSouth.add(ajouter);
         pSouth.add(modifier);
         pSouth.add(supprimer);
-        center.add(pSouth, BorderLayout.SOUTH); // Ajout du panel pSouth dans le panel CENTER
-
+        center.add(pSouth, BorderLayout.SOUTH); 
+        
         add(center, BorderLayout.CENTER);
 
-        //Mise en page
+        /**
+         * Mise en forme
+         */
         center.setBackground(Color.LIGHT_GRAY);
         pSouth.setBackground(Color.LIGHT_GRAY);
         pNorth.setBackground(Color.GRAY);
@@ -136,28 +191,29 @@ public class Contact extends MaskPhone implements Serializable {
         modifier.setBackground(Color.DARK_GRAY);
         modifier.setForeground(Color.WHITE);
 
-        // mise en place de la barre des tâche pour chaque
+        
+        /**
+         * Ajout de la barre des taches
+         */
         north.add(swisscom,BorderLayout.WEST);
         north.add(Heure, BorderLayout.CENTER);
         Heure.setHorizontalAlignment(JLabel.CENTER);
         Heure.setFont(taille);
         swisscom.setForeground(Color.white);
         Heure.setForeground(Color.white);
-
-
-
-
     }
-    class SelectButton implements ActionListener
-    {
-
-        public void actionPerformed(ActionEvent e)
-        {
-
-            //Quand on appuie sur le bouton ajouter de l'application contact
-            if(e.getSource()==ajouter)
-            {
-                //création de la fenêtre ajouter
+    
+    class SelectButton implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            
+        	/**
+        	 * Lorsque l utilisateur appuie sur le bouton ajouter
+        	 * de l application Contact
+        	 */
+            if(e.getSource()==ajouter) {
+                /**
+                 * Creation de la fenetre Ajouter
+                 */
                 try {
                     fenetreAjout = new FrameAdd() ;
                 } catch (IOException e1) {
@@ -165,244 +221,371 @@ public class Contact extends MaskPhone implements Serializable {
                 }
                 fenetreAjout.setVisible(true) ;
 
-                //remise à zero des champs
+                /**
+                 * Remise a zero des differents champs
+                 */
                 nom.setText("");
                 prenom.setText("");
                 tel.setText("");
 
 
-                //empecher les erreurs
-                Contact.this.erreurDouble=false;
-                Contact.this.creation=false;
-
-
+                /**
+                 * Empeche les erreurs
+                 */
+                Contact.this.erreurDouble = false;
+                Contact.this.creation = false;
             }
 
-            //Quand on appuie sur le bouton ajouter de la page ajouter et que tous les champs sont remplis
-            if(e.getSource()==ajouter2 &&  (!nom.getText().equals("") && !prenom.getText().equals("") && !tel.getText().equals("")) )
-            {
-                //ajouter 1 seule fois
-                if(creation==false){
-                    //ajout du contact
+           
+            /**
+             * Lorsque l utilisateur appuie sur le bouton ajouter
+             * de la page Ajouter et que tous les champs
+             * sont remplis
+             */
+            if(e.getSource()==ajouter2 && (!nom.getText().equals("") && !prenom.getText().equals("") && !tel.getText().equals(""))) {
+                /**
+                 * Ajoute une seule fois
+                 */
+                if(creation==false) {
+                    /**
+                     * Ajout du contact
+                     */
                     liste.addContact(chiffrePhoto);
-                    Contact.this.creation=true;
+                    Contact.this.creation = true;
                 }
-
-                //réactualise la panel de la JTable
-
+                
+                /**
+                 * Actualise le panel de la table
+                 */
                 refresh();
                 tableau.repaint();
 
-                //ferme la fenêtre
+                /**
+                 * Ferme la fenetre
+                 */
                 fenetreAjout.dispose();
-
-
             }
 
-            //Quand on appuie sur le bouton supprimer de Contact
-            if(e.getSource()==supprimer )
-            {
-                //supprime le contact sélectionné
+            /**
+             * Lorsque l utilisateur appuie sur le bouton supprimer
+             * de l application Contact
+             */
+            if(e.getSource()==supprimer) {
+            	/**
+            	 * Supprime le contact selectionne
+            	 */
                 liste.deleteContact(tableau.getSelectedRow());
-                //actualise la JTable
+                
+                /**
+                 * Actualisation
+                 */
                 refresh();
-
-
             }
 
-            //Quand tu appuies sur modifier dans la fenêtre Contact
-            if(e.getSource()==modifier )
-            {
-                //effectue cela seulement si un contact est séléctionné
-                if(tableau.getSelectedRow()!=-1){
-                    //ajout de la fenêtre
+          
+            /**
+             * Lorsque l utilisateur appuie sur modifier 
+             * de l application Contact
+             */
+            if(e.getSource()==modifier) {
+            	/**
+            	 * Effectue seulement si un contact est selectionne
+            	 */
+                if(tableau.getSelectedRow()!=-1) {
+                	/**
+                	 * Ajout de la fenetre
+                	 */
                     try {
-                        fenetreEdit = new FrameEdit() ;
+                        fenetreEdit = new FrameEdit();
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                    fenetreEdit.setVisible(true) ;
-                    Contact.this.erreurDouble=false;
+                    fenetreEdit.setVisible(true);
+                    Contact.this.erreurDouble = false;
                 }
             }
 
-            //Quand on appuie sur modifier dans la fenêtre modifier et que tous les champs sont rempli
-            if(e.getSource()==modifier2 &&  (!nom.getText().equals("") && !prenom.getText().equals("") && !tel.getText().equals("")))
-            {
-                //modifie le contact
+            /**
+             * Lorsque l utilisateur appuie sur modifier 
+             * de la fenetre Modifier et que tous les champs
+             * sont remplis
+             */
+            if(e.getSource()==modifier2 && (!nom.getText().equals("") && !prenom.getText().equals("") && !tel.getText().equals(""))) {            
+            	/**
+            	 * Modifie le contact
+            	 */
                 liste.editContact(tableau.getSelectedRow(), new InfoContact(nom.getText(), prenom.getText(), tel.getText(), chiffrePhoto));
 
-                //rafraichi la JTable
+                /**
+                 * Actualisation
+                 */
                 refresh();
 
-                //ferme la fenêtre
+                /**
+                 * Ferme la fenetre
+                 */
                 fenetreEdit.dispose();
             }
 
-            //Quand tu appuie sur modifier ou ajouter et que pas tous les champs sont rempli
-            if((e.getSource()==ajouter2 || e.getSource()==modifier2) &&  (nom.getText().equals("") || prenom.getText().equals("") || tel.getText().equals("")))
-            {
-                //ouverture de la fenêtre
-                fenetreErreur = new Erreur() ;
+            /**
+             * Lorsque l utilisateur appuie sur modifier ou ajouter
+             * et les champs ne sont pas tous remplis
+             */
+            if((e.getSource()==ajouter2 || e.getSource()==modifier2) && (nom.getText().equals("") || prenom.getText().equals("") || tel.getText().equals(""))) {
+                /**
+                 * Ouverture de la fenetre
+                 */
+                fenetreErreur = new Erreur();
                 fenetreErreur.setModal(true);
 
-                //permet de centré la fenêtre en fonction de la fenêtre précedante
-                if(e.getSource()==ajouter2){
+                /**
+                 * Permet de positionner la fenetre
+                 * en fonction de la fenetre precedente
+                 */
+                if(e.getSource()==ajouter2) {
                     fenetreErreur.setLocationRelativeTo(fenetreAjout);
                 }
-                else{
+                else {
                     fenetreErreur.setLocationRelativeTo(fenetreEdit);
                 }
 
                 fenetreErreur.setVisible(true);
-
-
             }
 
-            //Quand tu appuis sur OK de la fenêtre erreur
-            if(e.getSource()==okErreur)
-            {
-                //ferme la fenêtre
+            /**
+             * Lorsque l utilisateur appuie sur OK 
+             * de la fenetre erreur
+             */
+            if(e.getSource()==okErreur) {
+                /**
+                 * Ferme la fenetre
+                 */
                 fenetreErreur.dispose();
             }
 
-            //Quand tu appuie sur info dans Contact
-            if(e.getSource()==afficherContact )
-            {
-                //ouverture de la fenêtre
-                fenetreAfficher = new FrameAfficher() ;
+            /**
+             * Lorsque l utilisateur appuie sur info
+             * dans l application Contact
+             */
+            if(e.getSource()==afficherContact) {
+                /**
+                 * Ouverture de la fenetre
+                 */
+                fenetreAfficher = new FrameAfficher();
                 fenetreAfficher.setModal(true);
                 fenetreAfficher.setVisible(true) ;
-
             }
-            //Quand tu appuie sur OK dans la fenêtre Afficher
-            if(e.getSource()==ok)
-            {
-                //ferme la fenêtre
+            
+            /**
+             * Lorsque l utilisateur appuie sur OK
+             * de la fenetre Afficher
+             */
+            if(e.getSource()==ok) {
+
+            	/**
+            	 * Ferme la fenetre
+            	 */
                 fenetreAfficher.dispose();
             }
 
-            //Quand tu appuies sur ajouter photo dans la fenêtre d'ajout
-            if(e.getSource()==ajouterPhoto && erreurDouble==false)
-            {
-                //Ouvre la fenêtre
-                fenetrePhoto = new FramePhoto() ;
+            /**
+             * Lorsque l utilisateur appuie sur ajouter photo
+             * de la fenetre Ajouter
+             */
+            if(e.getSource()==ajouterPhoto && erreurDouble==false) {
+                /**
+                 * Ouvre la fenetre
+                 */
+                fenetrePhoto = new FramePhoto();
                 fenetrePhoto.setModal(true);
                 fenetrePhoto.setVisible(true);
                 Contact.this.erreurDouble=true;
-
             }
 
-            //Quand tu appuie sur le bouton d'une photo
-            if(e.getSource() == image1 && siContact==true){
-                //permet de savoir quel photo a été séléctionné
-                Contact.this.chiffrePhoto=1;
+            /**
+             * Lorsque l utilisateur appuie sur le bouton
+             * d une photo
+             */
+            if(e.getSource()==image1 && siContact==true) {
+                
+            	/**
+            	 * Permet de savoir quelle photo 
+            	 * a ete selectionnee
+            	 */
+                Contact.this.chiffrePhoto = 1;
                 fenetrePhoto.dispose();
             }
-            if(e.getSource() == image2 && siContact==true){
-                Contact.this.chiffrePhoto=2;
-                fenetrePhoto.dispose();
-
-            }
-            if(e.getSource() == image3  && siContact==true){
-                Contact.this.chiffrePhoto=3;
+            
+            if(e.getSource()==image2 && siContact==true) {
+                Contact.this.chiffrePhoto = 2;
                 fenetrePhoto.dispose();
             }
-            if(e.getSource() == image4 && siContact==true){
-                Contact.this.chiffrePhoto=4;
+            
+            if(e.getSource()==image3 && siContact==true) {
+                Contact.this.chiffrePhoto = 3;
                 fenetrePhoto.dispose();
+            }
+            
+            if(e.getSource()==image4 && siContact==true) {
+                Contact.this.chiffrePhoto = 4;
+                fenetrePhoto.dispose();
+            }
+            
+            if(e.getSource()==image5 && siContact==true) {
+            	Contact.this.chiffrePhoto = 5;
+            	fenetrePhoto.dispose();        	
+            }
+            
+            if(e.getSource()==image6 && siContact==true) {
+            	Contact.this.chiffrePhoto = 6;
+            	fenetrePhoto.dispose();
             }
         }
-    }//Création de la fenêtre d'ajout
-    class FrameAdd extends MaskPhone
-    {
-
-
+    }
+    
+    /**
+    * Creation de la fenetre Ajouter
+    */
+    class FrameAdd extends MaskPhone {
+    	/**
+    	 * Panel principal de cette fenetre
+    	 */
         JPanel center = new JPanel();
 
-
-
-        public FrameAdd() throws IOException{
+        /**
+         * Constructeur de FrameAdd
+         * @throws IOException
+         */
+        public FrameAdd() throws IOException {
             super();
 
+            /**
+             * Mise en forme
+             */
             setTitle("Ajouter");
 
-            center.setLayout( new FlowLayout( FlowLayout.CENTER, 50, 50 ) );
+            center.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
             add(center, BorderLayout.CENTER);
 
+            /**
+             * Ajout des diff�rents boutons, labels
+             * et listeners
+             */
             center.add(ajouterPhoto);
             center.add(TextNom);
-            center.add(nom) ;
+            center.add(nom);
             center.add(TextPrenom);
-            center.add(prenom) ;
+            center.add(prenom);
             center.add(TextTel);
-            center.add(tel) ;
+            center.add(tel);
             center.add(ajouter2);
-            ajouter2.addActionListener(new SelectButton(  ));
-            ajouterPhoto.addActionListener(new SelectButton(  ));
+            ajouter2.addActionListener(new SelectButton());
+            ajouterPhoto.addActionListener(new SelectButton());
 
-            //Quand cette fenêtre est ouverte, ca indique que l'on est dans contact
-            siContact=true;
+            /**
+             * Lorsque cette fenetre est ouverte,
+             * cela indique que l utilisateur
+             * se trouve dans l application contact
+             */
+            siContact = true;
 
-            //Mise en page
-            center.setBackground(Color.lightGray);      //JPanel center sera en gris clair
-            TextNom.setForeground(Color.black);         //Le texteNom sera en écriture noire
-            TextPrenom.setForeground(Color.black);      //Le textePrenom sera en écriture noire
-            TextTel.setForeground(Color.black);         //Le texteTel sera en écriture noire
+           
+            /**
+             * Mise en page comme suit:
+             * Panel principal en gris clair
+             * Police des differents champs selon
+             * la variable taille predefinie
+             * 
+             * @see Font taille
+             */
+            center.setBackground(Color.lightGray);     
+            TextNom.setForeground(Color.black);         
+            TextPrenom.setForeground(Color.black);
+            TextTel.setForeground(Color.black); 
 
-            //Le setFont permet de reprendre la ligne plus au de Font... où on a choisi la police d'écriture, type, taille
             TextNom.setFont(taille);
             TextPrenom.setFont(taille);
             TextTel.setFont(taille);
 
-            //Les boutons ajouter et ajouter2, sont en fond noir avec écriture blanche
+            /**
+             * Mise en forme des boutons comme suit:
+             * Fond noir
+             * Police blanche
+             */
             ajouterPhoto.setBackground(Color.black);
             ajouterPhoto.setForeground(Color.white);
 
             ajouter2.setBackground(Color.black);
             ajouter2.setForeground(Color.white);
         }
+    }
+   
+    /**
+     * Creation de la fenetre d editage
+     */
+    class FrameEdit extends MaskPhone {
 
-    } //Création de la fenêtre d'éditage
-    class FrameEdit extends MaskPhone
-    {
+    	/**
+    	 * Panel principal de cette fenetre
+    	 */
+        JPanel center = new JPanel();
 
-        JPanel center = new JPanel ();
-
-
+        /**
+         * Constructeur de FrameEdit
+         * @throws IOException
+         */
         public FrameEdit() throws IOException {
             super();
 
+            /**
+             * Mise en forme
+             */
             setTitle("Modifier");
 
-            center.setLayout( new FlowLayout( FlowLayout.CENTER, 50, 50 ) );
+            center.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
 
+            /**
+             * Ajout des differents boutons et labels
+             * avec leurs formats ainsi que 
+             * les differents listeners
+             */
             center.add(ajouterPhoto);
             center.add(TextNom);
-            center.add(nom) ;
+            center.add(nom);
             nom.setText((String)tableau.getValueAt(tableau.getSelectedRow(), 0));
 
             center.add(TextPrenom);
-            center.add(prenom) ;
+            center.add(prenom);
             prenom.setText((String)tableau.getValueAt(tableau.getSelectedRow(), 1));
 
             center.add(TextTel);
-            center.add(tel) ;
+            center.add(tel);
 
             tel.setText((String)liste.getArray2D()[tableau.getSelectedRow()][2]);
             center.add(modifier2);
 
             add(center, BorderLayout.CENTER);
 
-            ajouterPhoto.addActionListener(new SelectButton(  ));
-            modifier2.addActionListener(new SelectButton(  ));
+            ajouterPhoto.addActionListener(new SelectButton());
+            modifier2.addActionListener(new SelectButton());
 
-            //Quand cette fenêtre est ouverte, ca indique que l'on est dans contact
-            siContact=true;
+            /**
+             * Lorsque cette fenetre est ouverte,
+             * cela indique que l utilisateur
+             * se trouve dans l application contact
+             */
+            siContact = true;
 
-            // Mise en page
+            /**
+             * Mise en page comme suit:
+             * Panel principal en gris clair
+             * Police des differents champs selon
+             * la variable taille predefinie
+             * 
+             * @see Font taille
+             */
             center.setBackground(Color.lightGray);
-
+            
             ajouterPhoto.setBackground(Color.black);
             ajouterPhoto.setForeground(Color.white);
             modifier2.setForeground(Color.white);
@@ -411,69 +594,87 @@ public class Contact extends MaskPhone implements Serializable {
             TextNom.setFont(taille);
             TextPrenom.setFont(taille);
             TextTel.setFont(taille);
-
         }
-
     }
 
-    //Création de la fenêtre d'erreur
-    class Erreur extends JDialog    {
+    /**
+     * Creation de la fenetre d erreur
+     */
+    class Erreur extends JDialog {
 
-        JPanel center = new JPanel ();
+    	/**
+    	 * Panel principal de cette fenetre
+    	 */
+        JPanel center = new JPanel();
 
-
-        public Erreur(){
-
-
+        /**
+         * Constructeur d Erreur
+         */
+        public Erreur() {
+        	/**
+        	 * Mise en forme
+        	 */
             setTitle("Erreur");
 
-
-            center.setLayout( new FlowLayout( FlowLayout.CENTER, 50, 50 ) );
-
+            center.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
 
             setSize(300,250);
 
-
-            TextErreur = new JLabel("Veillez remplir tous les champs du contact!");
-
+            TextErreur = new JLabel("Veuillez remplir tous les champs du contact!");
+            
+            /**
+             * Ajout du label et du bouton
+             */
             center.add(TextErreur);
             center.add(okErreur);
             add(center, BorderLayout.CENTER);
 
-            //Mise en page
+            /**
+             * Mise en forme comme suit:
+             * Panel principal gris clair
+             * Fond du bouton en noir
+             * Premier plan du bouton en blanc
+             */
             center.setBackground(Color.lightGray);
             okErreur.setBackground(Color.black);
             okErreur.setForeground(Color.white);
 
-            okErreur.addActionListener(new SelectButton(  ));
-
+            okErreur.addActionListener(new SelectButton());
         }
-
     }
 
-    //Création de la fenêtre Aficher
-    class FrameAfficher extends BaseDialog
-    {
-
-        JPanel center = new JPanel ();
+    /**
+     * Creation de la fenetre Afficher
+     */
+    class FrameAfficher extends BaseDialog {
+    	
+    	/**
+    	 * Panel et police de cette fenetre
+    	 */
+        JPanel center = new JPanel();
         Font TDetail = new Font("Arial", Font.PLAIN, 13);
 
-        public FrameAfficher(){
-
+        public FrameAfficher() {
+        	/**
+        	 * Creation de la galerie d image
+        	 */
             try {
-                ph= new Photo();
+                ph = new Photo();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            /**
+             * Mise en forme
+             */
             setTitle("Info");
 
+            center.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
 
-            center.setLayout( new FlowLayout( FlowLayout.CENTER, 50, 50 ) );
-
-
-            //permet d'afficher la photo voulu
-            switch((int)liste.getArray2D()[tableau.getSelectedRow()][3]){
+            /**
+             * Permet d afficher la photo souhaitee
+             */
+            switch((int)liste.getArray2D()[tableau.getSelectedRow()][3]) {
                 case 0:
                     break;
                 case 1:
@@ -492,28 +693,50 @@ public class Contact extends MaskPhone implements Serializable {
                     JLabel image4 = new JLabel(ph.fourthImage);
                     center.add(image4);
                     break;
-
-
+                case 5:
+                	JLabel image5 = new JLabel(ph.fifthImage);
+                	center.add(image5);
+                    break;
+                case 6:	
+                	JLabel image6 = new JLabel(ph.sixthImage);
+                    center.add(image6);
+                    break;
             }
 
-
+            /**
+             * Ajout des differents boutons et labels
+             * avec leurs formats ainsi que 
+             * le listener
+             */
             center.add(TextNom);
             center.add(AfficherNom);
             AfficherNom.setText((String)tableau.getValueAt(tableau.getSelectedRow(), 0));
             center.add(TextPrenom);
-            center.add(AfficherPrenom) ;
+            center.add(AfficherPrenom);
             AfficherPrenom.setText((String)tableau.getValueAt(tableau.getSelectedRow(), 1));
             center.add(TextTel);
-            center.add(AfficherTel) ;
+            center.add(AfficherTel);
             AfficherTel.setText((String)liste.getArray2D()[tableau.getSelectedRow()][2]);
             center.add(ok);
 
-
-            ok.addActionListener(new SelectButton(  ));
+            ok.addActionListener(new SelectButton());
 
             add(center, BorderLayout.CENTER);
 
-            //Mise en page
+            /**
+             * Mise en page comme suit:
+             * Panel principal en gris clair
+             * Fond du bouton ok en noir
+             * Premier plan du bouton ok en blanc
+             * Police des champs Text. selon
+             * la variable taille predefinie
+             * Police des champs Afficher. selon
+             * la variable TDetail predefinie
+             * 
+             * @see Font taille
+             * @see Font TDetail
+             * 
+             */
             center.setBackground(Color.lightGray);
             ok.setBackground(Color.black);
             ok.setForeground(Color.white);
@@ -525,91 +748,132 @@ public class Contact extends MaskPhone implements Serializable {
             AfficherNom.setFont(TDetail);
             AfficherPrenom.setFont(TDetail);
             AfficherTel.setFont(TDetail);
-
-
-
         }
-
     }
 
-    //Création de la fenêtre d'ajout de photo
-    class FramePhoto extends BaseDialog
-    {
+    /**
+     * Creation de la fenetre d ajout photo
+     */
+    class FramePhoto extends BaseDialog {
+    	/**
+    	 * Panel de la fenetre
+    	 */
+        JPanel center = new JPanel();
 
-        JPanel center = new JPanel () ;
-
-        public FramePhoto(){
+        /**
+         * Constructeur de FramePhoto
+         */
+        public FramePhoto() {
             try {
-                ph= new Photo();
+                ph = new Photo();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            /**
+             * Mise en forme de la fenetre
+             * et des images
+             */
             setTitle("Galerie photo");
-
 
             center.setLayout(new GridLayout(3,2));
             center.add(image1);
             center.add(image2);
             center.add(image3);
             center.add(image4);
+            center.add(image5);
+            center.add(image6);
 
-            image1.setMargin(new Insets( 0, 0, 0, 0));
+            image1.setMargin(new Insets(0, 0, 0, 0));
             image1.setIcon(ph.firstImage);
 
-            image2.setMargin(new Insets( 0, 0, 0, 0));
+            image2.setMargin(new Insets(0, 0, 0, 0));
             image2.setIcon(ph.secondImage);
 
-            image3.setMargin(new Insets( 0, 0, 0, 0));
+            image3.setMargin(new Insets(0, 0, 0, 0));
             image3.setIcon(ph.thirdImage);
 
-            image4.setMargin(new Insets( 0, 0, 0, 0));
+            image4.setMargin(new Insets(0, 0, 0, 0));
             image4.setIcon(ph.fourthImage);
-
-
-
+            
+            image5.setMargin(new Insets(0, 0, 0, 0));
+            image5.setIcon(ph.fifthImage);
+            
+            image6.setMargin(new Insets(0, 0, 0, 0));
+            image6.setIcon(ph.sixthImage);
 
             add(ph.south, BorderLayout.SOUTH);
             add(center, BorderLayout.CENTER);
 
-            //Mise en page
+            /**
+             * Mise en forme du panel avec
+             * comme fond du gris clair
+             */
             center.setBackground(Color.lightGray);
 
-            image1.addActionListener(new SelectButton(  ));
-            image2.addActionListener(new SelectButton(  ));
-            image4.addActionListener(new SelectButton(  ));
-            image3.addActionListener(new SelectButton(  ));
+            /**
+             * Liaision des listeners aux boutons y relatifs
+             */
+            image1.addActionListener(new SelectButton());
+            image2.addActionListener(new SelectButton());
+            image3.addActionListener(new SelectButton());
+            image4.addActionListener(new SelectButton());
+            image5.addActionListener(new SelectButton());
+            image6.addActionListener(new SelectButton());
+            
 
-            siContact=true;
-
+            /**
+             * Lorsque cette fenetre est ouverte,
+             * cela indique que l utilisateur
+             * se trouve dans l application contact
+             */
+            siContact = true;
         }
-
-    } //Permet d'accéder aux informations écritent dans les champs
-    public String getTextNom()
-    {
+    } 
+    
+    /**
+     * Permet d obtenir le nom
+     * @return le texte de Nom
+     */
+    public String getTextNom() {
         return nom.getText();
     }
-    public String getTextPrenom()
-    {
+    
+    /**
+     * Permet d obtenir le prenom
+     * @return le texte de Prenom
+     */
+    public String getTextPrenom() {
         return prenom.getText();
     }
-    public String getTextTel()
-    {
+    
+    /**
+     * Permet d obtenir le telephone
+     * @return le texte de Tel
+     */
+    public String getTextTel() {
         return tel.getText();
     }
-    public int getTextPhoto()
-    {
-
+    
+    /**
+     * Permet d obtenir le numero de la photo
+     * @return le numero de la photo
+     */
+    public int getTextPhoto() {
         return chiffrePhoto;
     }
 
-    private void refresh()
-    {
+    /**
+     * Permet de rafraichir l affichage
+     * ainsi que les differents elements de 
+     * l application
+     */
+    private void refresh() {
         pNorth.remove(scroll);
         tableau = new JTable(liste.getArray2D(), new Object[] {"Nom", "Prenom"});
         tableau.setRowHeight(40);
         scroll = new JScrollPane(tableau);
-        scroll.setPreferredSize( new Dimension( (int) getContentPane().getPreferredSize().getWidth()-10, 500 ) );
+        scroll.setPreferredSize(new Dimension((int) getContentPane().getPreferredSize().getWidth()-10, 500));
         pNorth.add(scroll);
         pNorth.revalidate();
         scroll.setOpaque(false);
@@ -618,5 +882,4 @@ public class Contact extends MaskPhone implements Serializable {
         tableau.setForeground(Color.WHITE);
         tableau.setFont(taille);
     }
-
 }
