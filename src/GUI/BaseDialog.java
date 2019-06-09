@@ -1,7 +1,11 @@
 package GUI;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,136 +15,171 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import GUI.MaskPhone.Select;
+
+/**
+ * Classe pour nos JDialog
+ * @author gregory (mise en forme Diogo)
+ * @since 31.05.2019
+ */
+
 public class BaseDialog extends JDialog {
-    private JPanel south = new JPanel ();
-    private JPanel north = new JPanel ();
+	/**
+	 * Panel sud et nord
+	 */
+    private JPanel south = new JPanel();
+    private JPanel north = new JPanel();
 
-
-    //Button bar
+    /**
+     * Boutons principaux
+     */
     private JButton retour = new JButton();
     private JButton home = new JButton();
     private JButton delete = new JButton();
 
-
-    private ImageIcon ret = new ImageIcon ("./src/img/retour.png");
-    private ImageIcon hom = new ImageIcon ("./src/img/home.png");
-    private ImageIcon del = new ImageIcon ("./src/img/delete.png");
+    /**
+     * Icones des boutons
+     */
+    private ImageIcon ret = new ImageIcon("img/retour.png");
+    private ImageIcon hom = new ImageIcon("img/home.png");
+    private ImageIcon del = new ImageIcon("img/delete.png");
 
     /**
-     * Heure
-     * L'heure on va l'insérer dans un JLabel et pour la récupérer en utilise une méthode.
-     * On a également une méthode pour la rafraîchir
+     *Heure du telephone
      */
-
     private Date ajd;
     private JLabel heure = new JLabel(getTime());
     private Timer timer = new Timer();
 
+    private JLabel swisscom = new JLabel("Swisscom");
 
-    private JLabel swisscom = new JLabel ("Swisscom");
+    /**
+     * Taille du texte
+     */
+    private Font taille = new Font("Arial", Font.PLAIN, 16);
 
-    //taille texte
-    private Font taille = new Font ("Arial", Font.PLAIN, 16 );
+    /**
+     * Constructeur de BaseDialog
+     */
+    public BaseDialog() {
 
-    public BaseDialog()
-    {
-
-        //Taille de l'écran smartphone
+        /**
+         * Reglage de la taille de l ecran
+         */
         setSize(480,800);
 
-
-        //Bar Button avec les animations des boutons
+        /**
+         * ActionListeners lies aux boutons
+         */
         retour.addActionListener(new Select());
         delete.addActionListener(new Select());
         home.addActionListener(new Select());
 
-        //Incorporé les images aux boutons avec certains réglages comme la taille et couleur
-        home.setMargin(new Insets( 0, 0, 0, 0));         // Enlever les marges
-        home.setIcon(hom);                              // ajout image représentant le home dans le bouton home
-        home.setPreferredSize(new Dimension(145, 45)); // taille bouton
-        home.setBackground(Color.WHITE);             //couleur du bouton
+        /**
+         * Incorpore les images aux boutons avec comme reglages:
+         * la suppression des marges
+         * l icone du bouton
+         * sa taille
+         * sa couleur
+         */
+        home.setMargin(new Insets(0, 0, 0, 0));         
+        home.setIcon(hom);                              
+        home.setPreferredSize(new Dimension(145, 45)); 
+        home.setBackground(Color.WHITE);
 
-        delete.setMargin(new Insets( 0, 0, 0, 0));
+        delete.setMargin(new Insets(0, 0, 0, 0));
         delete.setIcon(del);
         delete.setPreferredSize(new Dimension(145, 45));
         delete.setBackground(Color.WHITE);
 
-        retour.setMargin(new Insets( 0, 0, 0, 0));
+        retour.setMargin(new Insets(0, 0, 0, 0));
         retour.setIcon(ret);
         retour.setPreferredSize(new Dimension(145, 45));
         retour.setBackground(Color.WHITE);
 
+        /**
+         * Ajout de la bar Button au sud
+         */
         south.add(delete);
         south.add(home);
         south.add(retour);
 
         add(south, BorderLayout.SOUTH);
 
-        //Heure
         setTimer();
 
-
-        //Ajout de l'heure et Swisscon au north
+        /**
+         * Ajout de l heure et Swisscom au north
+         */
         north.setLayout(new BorderLayout());
         north.add(swisscom, BorderLayout.WEST);
         north.add(heure, BorderLayout.EAST);
         add(north, BorderLayout.NORTH);
 
-        //Gestion des couleurs fond + écritures
-        north.setBackground(Color.BLACK);
+        /**
+         * Gestion des couleurs des JPANEL + ecritures
+         */
+        north.setBackground(Color.darkGray);
         south.setBackground(Color.WHITE);
-        swisscom.setForeground(Color.WHITE);
-        heure.setForeground(Color.WHITE);
+        swisscom.setForeground(Color.white);
+        heure.setForeground(Color.white);
 
         swisscom.setFont(taille);
         heure.setFont(taille);
 
-
-
-        // Le panel CENTER est ajouté séparéement dans les autres inferfaces afin de pouvoir ajouter ce que l'on veut au centre.
-
-
+        /**
+         * Le panel CENTER est ajoute separement dans les autres
+         * inferfaces afin de pouvoir ajouter
+         * ce que l on veut au centre.
+         */
     }
 
-
     /**
-     * ça nous permet de récupérer l'heure ainsi que le rafaîchir
-     * @return le format de l'heure
+     * Permet d obtenir l heure du systeme
+     * @return l heure
+     * 
      */
-    private String getTime(){
+    private String getTime() {
         ajd = new Date();
         DateFormat format = new SimpleDateFormat("HH:mm");
         return format.format(ajd);
     }
 
+    /**
+     * Permet de modifier l heure
+     */
     private void setTimer(){
         timer.scheduleAtFixedRate(new TimerTask() {
-
             public void run() {
                 heure.setText(BaseDialog.this.getTime());
             }
         }, 1000, 1000);
     }
-    /**
-     * Ces lignes de code concerne la selection des différents boutons de la Button Bar
-     *
-     */
+    
     class Select implements ActionListener{
-
-
         public void actionPerformed(ActionEvent e) {
-
-            if(e.getSource() == retour){
+            if(e.getSource()==retour){
                 setVisible(false);
-                //revient à la fenêtre precedente ouverte
-
+                /**
+                 * Revient a la fenetre precedemment ouverte
+                 */
             }
-            if(e.getSource() == delete){
+            
+            if(e.getSource()==delete){
                 System.exit(0);
-                // quitte complètement le smartphone
+                /**
+                 * Ferme toutes les fenetres
+                 */
             }
-            if(e.getSource() == home){
-
+            
+            if(e.getSource()==home){
                 HomeScreen ip = null;
                 try {
                     ip = new HomeScreen();
@@ -148,11 +187,10 @@ public class BaseDialog extends JDialog {
                     e1.printStackTrace();
                 }
                 ip.setVisible(true);
-                //reouvre la page de l'interface principale
+                /**
+                 * Revenir sur l interface principale
+                 */
             }
-
         }
-
     }
-
 }
