@@ -5,13 +5,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Classe la lecture du fichier audio
+ * @author
+ * @since
+ * from
+ */
 public class Son2 {
     // to store current position
     Long currentFrame;
     Clip clip;
 
     // current status of clip
-    String status ="";
+    String status = "";
 
     AudioInputStream audioInputStream;
     String filePath;

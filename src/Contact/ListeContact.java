@@ -1,27 +1,12 @@
 package Contact;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import javax.swing.table.TableModel;
-
 import GUI.Contact;
-import Serialization.Serialization;
-import Contact.InfoContact;
+import Serialisation.Serialisation;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe pour la sauvegarde des Contacts
@@ -54,7 +39,7 @@ public class ListeContact {
         /**
          * Deserialisation
          */
-        contacts = (List<InfoContact>) Serialization.deseralisation("src/Contact/contact.txt");
+        contacts = (List<InfoContact>) Serialisation.deseralisation("./src/Contact/contact.txt");
     }
 
     /**
@@ -67,7 +52,7 @@ public class ListeContact {
         /**
          * Serialisation
          */
-        Serialization.serialisation(contacts, "src/Contact/contact.txt");
+        Serialisation.serialisation(contacts, "./src/Contact/contact.txt");
     }
 
     /**
@@ -80,7 +65,7 @@ public class ListeContact {
         /**
          * Serialisation
          */
-        Serialization.serialisation(contacts, "src/Contact/contact.txt");
+        Serialisation.serialisation(contacts, "./src/Contact/contact.txt");
     }
 
     /**
@@ -96,7 +81,7 @@ public class ListeContact {
         /**
          * Serialisation
          */
-        Serialization.serialisation(contacts, "src/Contact/contact.txt");
+        Serialisation.serialisation(contacts, "./src/Contact/contact.txt");
     }
 
     /**
@@ -124,9 +109,9 @@ public class ListeContact {
      * est inexistant
      */
     private void creationFichier() {
-        File fichier = new File("src/Contact/contact.txt");
+        File fichier = new File("./src/Contact/contact.txt");
         if(fichier.exists()==false) {
-            Serialization.serialisation(new ArrayList<InfoContact>(), "src/Contact/contact.txt");
+            Serialisation.serialisation(new ArrayList<InfoContact>(), "./src/Contact/contact.txt");
         }
     }
 }

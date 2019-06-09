@@ -1,16 +1,19 @@
 package GUI;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.Date;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
 /**
  * Classe pour l'application Photo
  * 
- * @author Diogo (mise en forme Diogo)
+ * @author Diogo (mise en forme Gregory)
  * @since 13.05.2019
  * 
  */
@@ -26,37 +29,37 @@ public class Photo extends MaskPhone {
      * Creation des boutons pour les images
      */
     protected JButton firstButton = new JButton();
-    protected ImageIcon firstImage = new ImageIcon("img/Greg.jfif");
+    protected ImageIcon firstImage = new ImageIcon("./img/Greg.jfif");
 
     protected JButton secondButton = new JButton();
-    protected ImageIcon secondImage = new ImageIcon("img/DiogoDraw.png");
+    protected ImageIcon secondImage = new ImageIcon("./img/DiogoDraw.png");
 
     protected JButton thirdButton = new JButton();
-    protected ImageIcon thirdImage = new ImageIcon("img/ookami.jpg");
+    protected ImageIcon thirdImage = new ImageIcon("./img/ookami.jpg");
 
     protected JButton fourthButton = new JButton();
-    protected ImageIcon fourthImage = new ImageIcon("img/ookami.jpg");
+    protected ImageIcon fourthImage = new ImageIcon("./img/Captain_Berthouz.png");
 
     protected JButton fifthButton = new JButton();
-    protected ImageIcon fifthImage = new ImageIcon("img/ookami.jpg");
+    protected ImageIcon fifthImage = new ImageIcon("./img/papy.jpg");
 
     protected JButton sixthButton = new JButton();
-    protected ImageIcon sixthImage = new ImageIcon("img/ookami.jpg");
+    protected ImageIcon sixthImage = new ImageIcon("./img/Kevin.jfif");
 
     protected JButton seventhButton = new JButton();
-    protected ImageIcon seventhImage = new ImageIcon("img/ookami.jpg");
+    protected ImageIcon seventhImage = new ImageIcon("./img/Mickamorph.png");
 
     protected JButton eighthButton = new JButton();
-    protected ImageIcon eighthImage = new ImageIcon("img/ookami.jpg");
+    protected ImageIcon eighthImage = new ImageIcon("./img/Cake.png");
 
     /**
      * Boutons d ajout et de retour
      */
     protected JButton addButton = new JButton();
-    protected ImageIcon addIcon = new ImageIcon("img/add.png");
+    protected ImageIcon addIcon = new ImageIcon("./img/add.png");
 
     protected JButton retour = new JButton();
-    protected ImageIcon retourIcon = new ImageIcon("img/return-button.png");
+    protected ImageIcon retourIcon = new ImageIcon("./img/return-button.png");
 
     /**
      * Bouton pour les images ajoutees
@@ -114,7 +117,7 @@ public class Photo extends MaskPhone {
         secondButton.setContentAreaFilled(false);
         secondButton.setBorder(null);
 
-        thirdButton.setIcon(fourthImage);
+        thirdButton.setIcon(thirdImage);
         thirdButton.setContentAreaFilled(false);
         thirdButton.setBorder(null);
 
@@ -122,7 +125,7 @@ public class Photo extends MaskPhone {
         fourthButton.setContentAreaFilled(false);
         fourthButton.setBorder(null);
 
-        fifthButton.setIcon(fourthImage);
+        fifthButton.setIcon(fifthImage);
         fifthButton.setContentAreaFilled(false);
         fifthButton.setBorder(null);
 
@@ -185,42 +188,42 @@ public class Photo extends MaskPhone {
              * des images
              */
             try {
-                retour1 = new RetourImage("img/Greg.jfif");
+                retour1 = new RetourImage("./img/Greg.jfif");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour2 = new RetourImage("img/DiogoDraw.png");
+                retour2 = new RetourImage("./img/DiogoDraw.png");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour3 = new RetourImage("img/ookami.jpg");
+                retour3 = new RetourImage("./img/ookami.jpg");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour4 = new RetourImage("img/ookami.jpg");
+                retour4 = new RetourImage("./img/Captain_Berthouz.png");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour5 = new RetourImage("img/ookami.jpg");
+                retour5 = new RetourImage("./img/papy.jpg");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour6 = new RetourImage("img/ookami.jpg");
+                retour6 = new RetourImage("./img/Kevin.jfif");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour7 = new RetourImage("img/ookami.jpg");
+                retour7 = new RetourImage("./img/Mickamorph.png");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
             try {
-                retour8 = new RetourImage("img/ookami.jpg");
+                retour8 = new RetourImage("./img/Cake.png");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

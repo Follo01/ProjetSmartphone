@@ -23,32 +23,32 @@ public class FolloTunes extends MaskPhone {
     /**
      * Creation des boutons
      */
-    protected File firstFile= new File( "musique/Canton of Valais (Switzerland  Suiza ).wav");
+    protected File firstFile= new File( "./musique/Canton of Valais (Switzerland  Suiza ).wav");
     protected JButton firstButton = new JButton(firstFile.getName());
 
-    protected File secondFile= new File("musique/Lifelight (Main Theme Song) [Japanese].wav");
+    protected File secondFile= new File("./musique/Lifelight (Main Theme Song) [Japanese].wav");
     protected JButton secondButton = new JButton(secondFile.getName());
 
-    protected File thirdFile= new File("musique/Abreu Tico Tico  Barenboim  Berliner Philharmoniker.wav");
+    protected File thirdFile= new File("./musique/Abreu Tico Tico  Barenboim  Berliner Philharmoniker.wav");
     protected JButton thirdButton = new JButton(thirdFile.getName());
 
-    protected File fourthFile= new File("musique/George Frideric Handels - Water Music.wav");
+    protected File fourthFile= new File("./musique/George Frideric Handels - Water Music.wav");
     protected JButton fourthButton = new JButton(fourthFile.getName());
 
-    protected File fifthFile= new File("musique/Dvorak Symphony 9,  Allegro Con Fuoco.wav");
+    protected File fifthFile= new File("./musique/Dvorak Symphony 9,  Allegro Con Fuoco.wav");
     protected JButton fifthButton = new JButton(fifthFile.getName());
 
-    protected File sixthFile= new File("musique/Jean Baptiste Lully -Marche pour la ceremonie des Turcs.wav");
+    protected File sixthFile= new File("./musique/Jean Baptiste Lully -Marche pour la ceremonie des Turcs.wav");
     protected JButton sixthButton = new JButton(sixthFile.getName());
 
     protected JButton stop = new JButton();
-    protected ImageIcon retourIcon = new ImageIcon("img/Stop.png");
+    protected ImageIcon retourIcon = new ImageIcon("./img/Stop.png");
 
     protected JButton play=new JButton();
-    protected ImageIcon playIcon= new ImageIcon("img/Play.png");
+    protected ImageIcon playIcon= new ImageIcon("./img/Play.png");
 
     protected JButton pause = new JButton();
-    protected ImageIcon pauseIcon = new ImageIcon("img/pause.png");
+    protected ImageIcon pauseIcon = new ImageIcon("./img/pause.png");
     
     /**
      * Attributs pour les frames d'affichage
@@ -213,7 +213,7 @@ public class FolloTunes extends MaskPhone {
 
         /**
          * Constructeur de RetourMusique
-         * @param chemin le chemin d'accès du fichier son
+         * @param chemin le chemin d'accÃ¨s du fichier son
          */
         public Retourmusique(String chemin) throws IOException {
         	
@@ -228,7 +228,7 @@ public class FolloTunes extends MaskPhone {
             } catch (LineUnavailableException e) {
                 e.printStackTrace();
             }
-            icone = new ImageIcon("img/iconmusic.png");
+            icone = new ImageIcon("./img/iconmusic.png");
             label = new JLabel(icone);
             milieu = new JPanel();
             File fichier= new File(chemin);
@@ -296,7 +296,7 @@ public class FolloTunes extends MaskPhone {
             pause.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    audioPlayer .pause();
+                    audioPlayer.pause();
                 }
             });
             add(ButtonPanel, BorderLayout.SOUTH);

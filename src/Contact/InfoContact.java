@@ -15,7 +15,12 @@ public class InfoContact implements Serializable {
 
     /**
      * Constructeur d InfoContact
-     * @param son nom, prenom, numero de telephone et sa photo
+     * @param nom
+     * @param prenom
+     * @param numTelephone
+     * @param photo
+     *
+     * Les infos du contact
      */
     public InfoContact(String nom, String prenom, String numTelephone, int photo) {
         this.nom = nom;

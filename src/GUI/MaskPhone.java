@@ -1,16 +1,16 @@
 package GUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
-import javax.imageio.ImageIO;
-import java.io.File;
 
 /**
  * Classe servant de template pour le telephone
@@ -37,9 +37,9 @@ public class MaskPhone extends JFrame {
     /**
      * Icone des boutons
      */
-    ImageIcon ret = new ImageIcon("img/back.png");
-    ImageIcon hom = new ImageIcon("img/home.png");
-    ImageIcon del = new ImageIcon("img/power.png");
+    ImageIcon ret = new ImageIcon("./img/back.png");
+    ImageIcon hom = new ImageIcon("./img/home.png");
+    ImageIcon del = new ImageIcon("./img/power.png");
 
     JLabel swisscom = new JLabel("Swisscom");
     
@@ -176,7 +176,7 @@ public class MaskPhone extends JFrame {
 
         /**
          * Permet d initialiser le fond d ecran
-         * @param fileName, le chemin systeme du fond d'écran
+         * @param fileName, le chemin systeme du fond d'ï¿½cran
          *
          * @throws IOException
          */
@@ -186,7 +186,7 @@ public class MaskPhone extends JFrame {
 
         /**
          * Permet de dessiner notre fond d ecran
-         * @param une variable temporaire Graphics
+         * @param g une variable temporaire Graphics
          */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);

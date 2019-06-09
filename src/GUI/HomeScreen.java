@@ -2,22 +2,12 @@ package GUI;
 
 
 import javax.imageio.ImageIO;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * Classe pour la page d accueil du telephone
@@ -29,15 +19,10 @@ public class HomeScreen extends MaskPhone {
     private JButton contact = new JButton();
     private JButton follotunes = new JButton();
     private JButton photo = new JButton();
-    private JPanelWithBackground apps = new JPanelWithBackground("img/background2.jpg");
-    private ImageIcon contct = new ImageIcon("img/contact.png");
-    private ImageIcon follo = new ImageIcon("img/follotunes.png");
-    private ImageIcon phot = new ImageIcon("img/photo.png");
-    
-    /**
-     * Format de l heure
-     */
-    private Font Theure = new Font ("Arial", Font.PLAIN, 100 );
+    private JPanelWithBackground apps = new JPanelWithBackground("./img/background2.jpg");
+    private ImageIcon contct = new ImageIcon("./img/contact.png");
+    private ImageIcon follo = new ImageIcon("./img/follotunes.png");
+    private ImageIcon phot = new ImageIcon("./img/photo.png");
 
     private JPanel center = new JPanel();
   
@@ -59,7 +44,7 @@ public class HomeScreen extends MaskPhone {
          * Sans marge
          * Leur icone
          * Leur taille
-         * L'opacité
+         * L'opacitÃ©
          * Sans bordure
          * Sans cadre
          */
@@ -124,7 +109,7 @@ public class HomeScreen extends MaskPhone {
         
         /**
          * Constructeur de JPanelWithBackgroun
-         * @param le chemin systeme du fond voulu
+         * @param fileName le chemin systeme du fond voulu
          * @throws IOException
          */
         public JPanelWithBackground(String fileName) throws IOException {
@@ -133,7 +118,7 @@ public class HomeScreen extends MaskPhone {
         
         /**
          * Permet de dessiner notre fond d ecran
-         * @param variable Graphics temporaire
+         * @param g variable Graphics temporaire
          */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -161,9 +146,9 @@ public class HomeScreen extends MaskPhone {
             }
             
             if(e.getSource()==follotunes) {
-                folloTunes f = null;
+                FolloTunes f = null;
                 try {
-                    f = new folloTunes();
+                    f = new FolloTunes();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

@@ -28,8 +28,8 @@ public class LockScreen extends MaskPhone {
      */	
     JPanel south = new JPanel();
     JPanel north = new JPanel();
-    JPanelWithBackground center= new JPanelWithBackground("img/background.jpg");
-    JPanelWithBackground background=new JPanelWithBackground("img/background.jpg");
+    JPanelWithBackground center= new JPanelWithBackground("./img/background.jpg");
+    JPanelWithBackground background=new JPanelWithBackground("./img/background.jpg");
     JPanel centerNorth= new JPanel();
     
     /**
@@ -39,9 +39,9 @@ public class LockScreen extends MaskPhone {
     JButton home = new JButton();
     JButton delete = new JButton();
 
-    ImageIcon ret = new ImageIcon ("img/back.png");
-    ImageIcon hom = new ImageIcon ("img/home.png");
-    ImageIcon del = new ImageIcon ("img/power.png");
+    ImageIcon ret = new ImageIcon ("./img/back.png");
+    ImageIcon hom = new ImageIcon ("./img/home.png");
+    ImageIcon del = new ImageIcon ("./img/power.png");
 
     /**
      * Heure et date
@@ -64,7 +64,7 @@ public class LockScreen extends MaskPhone {
 
 
     /**
-     * 
+     * Constructeur de LockScreen
      * @throws IOException
      */
     public LockScreen() throws IOException {

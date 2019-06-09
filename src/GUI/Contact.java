@@ -1,14 +1,14 @@
+package GUI;
 
+import Contact.InfoContact;
+import Contact.ListeContact;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
-
-import javax.swing.*;
-
-import Contact.InfoContact;
-import Contact.ListeContact;
 
 /**
  * Classe de l'application Contact
@@ -468,7 +468,7 @@ public class Contact extends MaskPhone implements Serializable {
             add(center, BorderLayout.CENTER);
 
             /**
-             * Ajout des différents boutons, labels
+             * Ajout des diffï¿½rents boutons, labels
              * et listeners
              */
             center.add(ajouterPhoto);

@@ -1,11 +1,7 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.KeyboardFocusManager;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,15 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import GUI.MaskPhone.Select;
 
 /**
  * Classe pour nos JDialog
@@ -47,9 +34,9 @@ public class BaseDialog extends JDialog {
     /**
      * Icones des boutons
      */
-    private ImageIcon ret = new ImageIcon("img/retour.png");
-    private ImageIcon hom = new ImageIcon("img/home.png");
-    private ImageIcon del = new ImageIcon("img/delete.png");
+    private ImageIcon ret = new ImageIcon("./img/retour.png");
+    private ImageIcon hom = new ImageIcon("./img/home.png");
+    private ImageIcon del = new ImageIcon("./img/delete.png");
 
     /**
      *Heure du telephone

@@ -7,10 +7,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Interface servant comme bibliothèque externe
+ * @author BalusC
+ * @since 20.03.2016
+ * from https://stackoverflow.com/questions/3434719/how-to-get-the-remaining-battery-life-in-a-windows-system
+ *
+ */
 public interface Kernel32 extends StdCallLibrary {
     public Kernel32 INSTANCE = (Kernel32) Native.loadLibrary("Kernel32", Kernel32.class);
 
-
+    /**
+     * see http://msdn2.microsoft.com/en-us/library/aa373232.aspx
+     */
     public class SYSTEM_POWER_STATUS extends Structure {
         public byte ACLineStatus;
         public byte BatteryFlag;
