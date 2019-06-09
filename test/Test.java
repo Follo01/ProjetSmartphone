@@ -1,6 +1,6 @@
 
 import GUI.LockScreen;
-import Serialization.Serialization;
+import Serialisation.Serialisation;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -32,7 +32,7 @@ public class Test {
      */
     @org.junit.jupiter.api.Test
     public void testSerialisation() {
-        //Regarde si ça bien enregistrer au bonne endroit
+        //Regarde si ï¿½a bien enregistrer au bonne endroit
         assertTrue(Serialisation.serialisation(MonTestJunit, filepath));
     }
 
